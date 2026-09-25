@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>NSE India Official API Explorer & Documentation</title>
+  <meta name="description" content="Official theme, mobile-first documentation and JSON explorer for NSE India market endpoints." />
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            nse: {
+              navy: '#002855',
+              dark: '#001a38',
+              light: '#0a3a75',
+              red: '#a6192e',
+              orange: '#e87722',
+              bg: '#f4f6f9'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="bg-[#f4f6f9] text-[#1e293b] min-h-screen flex flex-col font-sans antialiased selection:bg-[#002855] selection:text-white">
+
+  <!-- TOP NSE BRAND HEADER (Same on Laptop & Mobile) -->
+  <header class="sticky top-0 z-30 bg-[#002855] text-white shadow-md">
+    <!-- NSE Tricolor Accent Strip -->
+    <div class="h-1 w-full flex">
+      <div class="h-full w-1/2 bg-[#a6192e]"></div>
+      <div class="h-full w-1/2 bg-[#e87722]"></div>
+    </div>
+
+    <div class="max-w-5xl mx-auto px-3 sm:px-6 h-14 flex items-center justify-between gap-2">
+      
+      <!-- Brand Logo & Title -->
+      <a href="#" onclick="handleLogoClick(); return false;" class="flex items-center space-x-2 flex-shrink-0 cursor-pointer">
+        <div class="w-8 h-8 rounded-lg bg-white flex items-center justify-center font-black text-[#002855] text-xs sm:text-sm shadow-sm border border-white/20">
+          NSE
+        </div>
+        <div>
+          <div class="flex items-center space-x-1">
+            <span class="font-extrabold text-sm sm:text-base tracking-tight text-white">API<span class="text-amber-400">DOCS</span></span>
+            <span class="text-[9px] uppercase font-bold tracking-wider px-1.5 py-0.5 rounded bg-white/10 text-amber-300 border border-white/20 hidden xs:inline">Official</span>
+          </div>
+          <p class="text-[10px] text-white/70 -mt-0.5 hidden sm:block">National Stock Exchange of India</p>
+        </div>
+      </a>
+
+      <!-- Quick Search -->
+      <div class="flex-1 max-w-xs sm:max-w-sm ml-auto">
+        <div class="relative w-full">
+          <input type="text" id="global-search" placeholder="Search (e.g. bulk, block, 9:12am)..." 
+            class="w-full bg-white/10 border border-white/20 rounded-full pl-3 pr-8 py-1.5 text-xs text-white placeholder-white/60 focus:outline-none focus:bg-white/20 focus:border-amber-400 transition" />
+          <button id="clear-search-btn" class="absolute inset-y-0 right-0 pr-2.5 flex items-center text-white/60 hover:text-white hidden text-xs font-bold" title="Clear Search">
+            ✕
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ======================================================== -->
+  <!-- 1. LAPTOP DESKTOP SUBHEADER (VISIBLE ON SCREENS >= MD)   -->
+  <!-- Restores the exact, perfect horizontal tabs view you loved! -->
+  <!-- ======================================================== -->
+  <div id="desktop-subheader" class="hidden md:block sticky top-14 z-20 bg-white border-b border-gray-200 shadow-sm">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 py-2.5">
+      
+      <!-- Category breadcrumb indicator -->
+      <div class="flex items-center justify-between text-[11px] font-semibold text-gray-500 mb-2">
+        <div class="flex items-center space-x-1 text-xs truncate mr-2">
+          <span class="text-[#a6192e] font-bold">MARKET DATA</span>
+          <span>&gt;</span>
+          <span id="desktop-breadcrumb-category" class="text-[#002855] font-bold">Pre-Open Market & Large Deals</span>
+        </div>
+        <div id="desktop-search-badge" class="flex-shrink-0 text-[10px] font-mono-code bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded-full border border-emerald-200">
+          4 Endpoints
+        </div>
+      </div>
+
+      <!-- Horizontal Tabs for Laptop Screen (All 4 Tabs Fit Smoothly) -->
+      <div id="desktop-tabs-list" class="flex items-center space-x-2 pb-0.5 overflow-x-auto">
+        <!-- Populated by app.js: [Nifty 50] [Nifty Bank] [All Stocks] [ALL Large Deals] -->
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ======================================================== -->
+  <!-- 2. MOBILE SUBHEADER (VISIBLE ONLY ON PHONES < MD)        -->
+  <!-- ======================================================== -->
+  <div id="mobile-subheader" class="md:hidden sticky top-14 z-20 bg-white border-b border-gray-200 shadow-sm">
+    <div class="px-3 py-2 flex items-center justify-between gap-2">
+      <!-- Mobile Category Filter Pills -->
+      <div id="mobile-category-pills" class="horizontal-scroll space-x-1.5 py-0.5">
+        <!-- Populated by app.js -->
+      </div>
+      <!-- Mobile Counter Badge -->
+      <div id="mobile-search-badge" class="flex-shrink-0 text-[10px] font-mono-code bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded-full border border-emerald-200">
+        4 APIs
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================== -->
+  <!-- MAIN WORKSPACE CONTAINER                                 -->
+  <!-- ======================================================== -->
+  <main class="flex-1 max-w-5xl w-full mx-auto p-3 sm:p-6">
+    
+    <!-- MOBILE VIEW A: SCROLL VIEW OF API CARDS (Phone default) -->
+    <!-- Large Deals is directly visible in the feed! -->
+    <div id="mobile-list-view" class="md:hidden space-y-3">
+      <div id="mobile-cards-feed" class="space-y-3">
+        <!-- Populated dynamically by app.js -->
+      </div>
+    </div>
+
+    <!-- DETAIL VIEW: LAPTOP DEFAULT & MOBILE DRILL-DOWN -->
+    <!-- Laptop: Always displays the selected tab. -->
+    <!-- Mobile: Opens when user taps "View Details", with a Back button. -->
+    <div id="detail-view-container" class="space-y-4">
+      
+      <!-- Mobile-Only Back Navigation Bar -->
+      <div id="mobile-back-bar" class="md:hidden flex items-center justify-between bg-white border border-gray-200 rounded-xl px-3.5 py-2.5 shadow-sm">
+        <button onclick="mobileGoBackToList()" class="flex items-center space-x-1.5 text-xs font-bold text-[#002855] hover:text-[#a6192e] transition">
+          <span class="text-sm">←</span>
+          <span>Back to All APIs</span>
+        </button>
+        <span id="mobile-detail-tag" class="text-[11px] font-medium text-gray-500 truncate max-w-[180px]">
+          MARKET DATA
+        </span>
+      </div>
+
+      <!-- Main API Documentation & Interactive JSON Mount -->
+      <div id="detail-content-mount">
+        <div class="p-8 text-center text-gray-400 text-sm">
+          Loading NSE endpoint documentation...
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-white border-t border-gray-200 py-4 text-center text-xs text-gray-500 mt-auto">
+    <div class="max-w-5xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-2">
+      <span class="font-medium text-[#002855]">National Stock Exchange of India (NSE) API Reference</span>
+      <span class="text-[11px] text-gray-400">Adaptive Laptop & Mobile Edition &bull; GitHub Pages Ready</span>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/search-engine.js"></script>
+  <script src="js/json-viewer.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,135 @@
+/* NSE India Official Theme & Mobile-First Styling */
+
+:root {
+  --nse-navy: #002855;
+  --nse-navy-dark: #001a38;
+  --nse-navy-light: #0a3a75;
+  --nse-red: #a6192e;
+  --nse-orange: #e87722;
+  --nse-yellow: #f5a623;
+  --nse-bg: #f4f6f9;
+  --nse-card: #ffffff;
+  --nse-border: #e2e8f0;
+  --nse-text-dark: #1e293b;
+  --nse-text-muted: #64748b;
+}
+
+body {
+  background-color: var(--nse-bg);
+  color: var(--nse-text-dark);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Horizontal scrollbar styling */
+.horizontal-scroll {
+  display: flex;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.horizontal-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+/* Monospace font utility */
+.font-mono-code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+/* Card hover animation */
+.endpoint-card {
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+}
+.endpoint-card:active {
+  transform: scale(0.99);
+}
+
+/* JSON Viewer (Mobile Optimized & Touch Friendly) */
+.json-viewer {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.8125rem;
+  line-height: 1.55;
+  color: #1e293b;
+}
+
+.json-item {
+  margin: 1.5px 0;
+  word-break: break-all;
+}
+
+/* Larger touch area for caret toggle on mobile phones */
+.json-caret {
+  cursor: pointer;
+  user-select: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  font-size: 10px;
+  color: #64748b;
+  transition: transform 0.15s ease;
+  border-radius: 4px;
+}
+.json-caret:hover, .json-caret:active {
+  background-color: #e2e8f0;
+  color: var(--nse-navy);
+}
+
+.json-caret.collapsed {
+  transform: rotate(-90deg);
+}
+
+.json-key {
+  color: #003b7a;
+  font-weight: 600;
+}
+
+.json-string {
+  color: #0d8253;
+}
+
+.json-number {
+  color: #c05621;
+  font-weight: 500;
+}
+
+.json-boolean {
+  color: #9f1239;
+  font-weight: 600;
+}
+
+.json-null {
+  color: #94a3b8;
+  font-style: italic;
+}
+
+.json-collapsed-text {
+  color: #64748b;
+  cursor: pointer;
+  user-select: none;
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.json-highlight {
+  background-color: #fef08a;
+  color: #854d0e;
+  border-radius: 2px;
+  padding: 0 2px;
+}
+
+/* Pulse animation for live/pre-open badges */
+@keyframes pulse-subtle {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.2); }
+}
+
+.pulse-dot {
+  animation: pulse-subtle 1.8s ease-in-out infinite;
+}

@@ -1,0 +1,2025 @@
+{
+  "version": "1.0.0",
+  "theme": "nse-india-official",
+  "apis": [
+    {
+      "id": "pre-open-nifty-50",
+      "name": "Pre-Open Market: Nifty 50",
+      "categoryPath": "MARKET DATA > (Equity) Pre-Open Market",
+      "category": "Pre-Open Market",
+      "segment": "Equity",
+      "path": "/api/NextApi/apiClient/cmPreOpenApi?functionName=getPreOpenData&category=NIFTY%2050&symbol=",
+      "baseUrl": "https://www.nseindia.com",
+      "method": "GET",
+      "frequencyType": "Pre-Market Discovery",
+      "fetchTime": ">09:08 AM (Pre-Market)",
+      "publishTimes": [
+        {
+          "window": "Pre-Open Order Collection & Match",
+          "time": ">09:08 AM",
+          "description": "Equilibrium price discovery auction completes at 09:08 AM before normal trading begins at 09:15 AM."
+        }
+      ],
+      "description": "Returns pre-market discovery prices, equilibrium IEP order book, indicative total quantities, advances/declines, and price change percentage for all NIFTY 50 constituents.",
+      "parameters": [
+        {
+          "name": "functionName",
+          "type": "string",
+          "default": "getPreOpenData",
+          "description": "API function"
+        },
+        {
+          "name": "category",
+          "type": "string",
+          "default": "NIFTY 50",
+          "description": "Market index category"
+        },
+        {
+          "name": "symbol",
+          "type": "string",
+          "default": "",
+          "description": "Optional symbol filter"
+        }
+      ],
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/122.0.0.0 Safari/537.36",
+        "Referer": "https://www.nseindia.com/market-data/pre-open-market-cm-and-emerge-market"
+      },
+      "sampleResponse": {
+        "totalValue": 2220781809.45,
+        "declines": 47,
+        "data": [
+          {
+            "identifier": "HDFCBANKEQN",
+            "symbol": "HDFCBANK",
+            "series": "EQ",
+            "marketType": "N",
+            "IEP": 0,
+            "iepOrderBook": 725,
+            "change": -12.25,
+            "perChange": -1.66,
+            "finalPrice": 725,
+            "finalValue": 668062850,
+            "finalQuantity": 921466,
+            "iiqAtEP": 0,
+            "iiqAtMO": 0,
+            "orderBook": [
+              {
+                "price": 724.2,
+                "buyQuantity": 20,
+                "sellQuantity": 0,
+                "flag": false
+              },
+              {
+                "price": 724.25,
+                "buyQuantity": 1,
+                "sellQuantity": 0,
+                "flag": false
+              },
+              {
+                "price": 724.3,
+                "buyQuantity": 20,
+                "sellQuantity": 0,
+                "flag": false
+              },
+              {
+                "price": 724.75,
+                "buyQuantity": 34,
+                "sellQuantity": 0,
+                "flag": false
+              },
+              {
+                "price": 725,
+                "buyQuantity": 9859,
+                "sellQuantity": 0,
+                "flag": true
+              },
+              {
+                "price": 725.4,
+                "buyQuantity": 0,
+                "sellQuantity": 1400,
+                "flag": false
+              },
+              {
+                "price": 725.5,
+                "buyQuantity": 0,
+                "sellQuantity": 25,
+                "flag": false
+              },
+              {
+                "price": 726,
+                "buyQuantity": 0,
+                "sellQuantity": 2500,
+                "flag": false
+              },
+              {
+                "price": 726.4,
+                "buyQuantity": 0,
+                "sellQuantity": 500,
+                "flag": false
+              },
+              {
+                "price": 727,
+                "buyQuantity": 0,
+                "sellQuantity": 30,
+                "flag": false
+              }
+            ],
+            "atoBuyQuantity": 0,
+            "atoSellQuantity": 0,
+            "totalBuyQuantity": 294271,
+            "totalSellQuantity": 546194,
+            "basePrice": 737.25,
+            "averagePrice": null,
+            "totTradedQty": 0,
+            "avgTrdPrice": 725,
+            "highPrice": 725,
+            "lowPrice": 725,
+            "bestBidPrice": 725,
+            "bestBidQty": 9859,
+            "bestAskPrice": 725.4,
+            "bestAskQty": 1400,
+            "indicativeValue": null,
+            "lastUpdateTime": "24-Sep-2026 09:09:14",
+            "prevClose": 737.25,
+            "ffmMarketCap": 11082459874458.6,
+            "yearHigh": 1020.5,
+            "yearLow": 681.9
+          },
+          {
+            "identifier": "RELIANCEEQN",
+            "symbol": "RELIANCE",
+            "series": "EQ",
+            "marketType": "N",
+            "IEP": 0,
+            "iepOrderBook": 1236.6,
+            "change": -11.4,
+            "perChange": -0.91,
+            "finalPrice": 1236.6,
+            "finalValue": 236508406.2,
+            "finalQuantity": 191257,
+            "iiqAtEP": 0,
+            "iiqAtMO": 0,
+            "orderBook": [
+              {
+                "price": 1236.2,
+                "buyQuantity": 30,
+                "sellQuantity": 0,
+                "flag": false
+              },
+              {
+                "price": 1236.3,
+                "buyQuantity": 3001,
+                "sellQuantity": 0,
+                "flag": false
+              },
+              {
+                "price": 1236.4,
+                "buyQuantity": 5,
+                "sellQuantity": 0,
+                "flag": false
+              },
+              {
+                "price": 1236.5,
+                "buyQuantity": 1138,
+                "sellQuantity": 0,
+                "flag": false
+              },
+              {
+                "price": 1236.6,
+                "buyQuantity": 2417,
+                "sellQuantity": 0,
+                "flag": true
+              },
+              {
+                "price": 1236.9,
+                "buyQuantity": 0,
+                "sellQuantity": 10000,
+                "flag": false
+              },
+              {
+                "price": 1237,
+                "buyQuantity": 0,
+                "sellQuantity": 269,
+                "flag": false
+              },
+              {
+                "price": 1238,
+                "buyQuantity": 0,
+                "sellQuantity": 11602,
+                "flag": false
+              },
+              {
+                "price": 1238.9,
+                "buyQuantity": 0,
+                "sellQuantity": 9,
+                "flag": false
+              },
+              {
+                "price": 1239,
+                "buyQuantity": 0,
+                "sellQuantity": 42,
+                "flag": false
+              }
+            ],
+            "atoBuyQuantity": 0,
+            "atoSellQuantity": 0,
+            "totalBuyQuantity": 150931,
+            "totalSellQuantity": 301178,
+            "basePrice": 1248,
+            "averagePrice": null,
+            "totTradedQty": 0,
+            "avgTrdPrice": 1236.6,
+            "highPrice": 1236.6,
+            "lowPrice": 1236.6,
+            "bestBidPrice": 1236.6,
+            "bestBidQty": 2417,
+            "bestAskPrice": 1236.9,
+            "bestAskQty": 10000,
+            "indicativeValue": null,
+            "lastUpdateTime": "24-Sep-2026 09:09:14",
+            "prevClose": 1248,
+            "ffmMarketCap": 8330654367641.53,
+            "yearHigh": 1611.8,
+            "yearLow": 1219.2
+          },
+          {
+            "identifier": "AXISBANKEQN",
+            "symbol": "AXISBANK",
+            "series": "EQ",
+            "marketType": "N",
+            "IEP": 0,
+            "iepOrderBook": 1225.2,
+            "change": -18,
+            "perChange": -1.45,
+            "finalPrice": 1225.2,
+            "finalValue": 193641634.8,
+            "finalQuantity": 158049,
+            "iiqAtEP": 0,
+            "iiqAtMO": 0,
+            "orderBook": [
+              {
+                "price": 1224,
+                "buyQuantity": 71,
+                "sellQuantity": 0,
+                "flag": false
+              },
+              {
+                "price": 1224.2,
+                "buyQuantity": 1,
+                "sellQuantity": 0,
+                "flag": false
+              },
+              {
+                "price": 1224.8,
+                "buyQuantity": 800,
+                "sellQuantity": 0,
+                "flag": false
+              },
+              {
+                "price": 1225,
+                "buyQuantity": 754,
+                "sellQuantity": 0,
+                "flag": false
+              },
+              {
+                "price": 1225.1,
+                "buyQuantity": 713,
+                "sellQuantity": 0,
+                "flag": false
+              },
+              {
+                "price": 1225.2,
+                "buyQuantity": 0,
+                "sellQuantity": 3123,
+                "flag": true
+              },
+              {
+                "price": 1225.3,
+                "buyQuantity": 0,
+                "sellQuantity": 6,
+                "flag": false
+              },
+              {
+                "price": 1230.8,
+                "buyQuantity": 0,
+                "sellQuantity": 2,
+                "flag": false
+              },
+              {
+                "price": 1233,
+                "buyQuantity": 0,
+                "sellQuantity": 300,
+                "flag": false
+              },
+              {
+                "price": 1234,
+                "buyQuantity": 0,
+                "sellQuantity": 500,
+                "flag": false
+              }
+            ],
+            "atoBuyQuantity": 0,
+            "atoSellQuantity": 0,
+            "totalBuyQuantity": 48179,
+            "totalSellQuantity": 63766,
+            "basePrice": 1243.2,
+            "averagePrice": null,
+            "totTradedQty": 0,
+            "avgTrdPrice": 1225.2,
+            "highPrice": 1225.2,
+            "lowPrice": 1225.2,
+            "bestBidPrice": 1225.1,
+            "bestBidQty": 713,
+            "bestAskPrice": 1225.2,
+            "bestAskQty": 3123,
+            "indicativeValue": null,
+            "lastUpdateTime": "24-Sep-2026 09:09:14",
+            "prevClose": 1243.2,
+            "ffmMarketCap": 3512315389658.93,
+            "yearHigh": 1418.3,
+            "yearLow": 1125.4
+          },
+          {
+            "identifier": "ICICIBANKEQN",
+            "symbol": "ICICIBANK",
+            "series": "EQ",
+            "marketType": "N",
+            "IEP": 0,
+            "iepOrderBook": 1333.1,
+            "change": -6.9,
+            "perChange": -0.51,
+            "finalPrice": 1333.1,
+            "finalValue": 135426962.8,
+            "finalQuantity": 101588,
+            "iiqAtEP": 0,
+            "iiqAtMO": 0,
+            "orderBook": [
+              {
+                "price": 1332.1,
+                "buyQuantity": 401,
+                "sellQuantity": 0,
+                "flag": false
+              },
+              {
+                "price": 1332.5,
+                "buyQuantity": 1,
+                "sellQuantity": 0,
+                "flag": false
+              },
+              {
+                "price": 1332.6,
+                "buyQuantity": 1,
+                "sellQuantity": 0,
+                "flag": false
+              },
+              {
+                "price": 1333,
+                "buyQuantity": 403,
+                "sellQuantity": 0,
+                "flag": false
+              },
+              {
+                "price": 1333.1,
+                "buyQuantity": 3235,
+                "sellQuantity": 0,
+                "flag": true
+              },
+              {
+                "price": 1333.3,
+                "buyQuantity": 0,
+                "sellQuantity": 111,
+                "flag": false
+              },
+              {
+                "price": 1333.4,
+                "buyQuantity": 0,
+                "sellQuantity": 2249,
+                "flag": false
+              },
+              {
+                "price": 1334,
+                "buyQuantity": 0,
+                "sellQuantity": 4000,
+                "flag": false
+              },
+              {
+                "price": 1334.9,
+                "buyQuantity": 0,
+                "sellQuantity": 75,
+                "flag": false
+              },
+              {
+                "price": 1335,
+                "buyQuantity": 0,
+                "sellQuantity": 144,
+                "flag": false
+              }
+            ],
+            "atoBuyQuantity": 0,
+            "atoSellQuantity": 0,
+            "totalBuyQuantity": 32865,
+            "totalSellQuantity": 53954,
+            "basePrice": 1340,
+            "averagePrice": null,
+            "totTradedQty": 0,
+            "avgTrdPrice": 1333.1,
+            "highPrice": 1333.1,
+            "lowPrice": 1333.1,
+            "bestBidPrice": 1333.1,
+            "bestBidQty": 3235,
+            "bestAskPrice": 1333.3,
+            "bestAskQty": 111,
+            "indicativeValue": null,
+            "lastUpdateTime": "24-Sep-2026 09:09:14",
+            "prevClose": 1340,
+            "ffmMarketCap": 9529778442016.44,
+            "yearHigh": 1480,
+            "yearLow": 1187.6
+          },
+          {
+            "identifier": "BAJFINANCEEQN",
+            "symbol": "BAJFINANCE",
+            "series": "EQ",
+            "marketType": "N",
+            "IEP": 0,
+            "iepOrderBook": 1005,
+            "change": -38.2,
+            "perChange": -3.66,
+            "finalPrice": 1005,
+            "finalValue": 115298625,
+            "finalQuantity": 114725,
+            "iiqAtEP": 0,
+            "iiqAtMO": 0,
+            "orderBook": [
+              {
+                "price": 1003.1,
+                "buyQuantity": 1,
+                "sellQuantity": 0,
+                "flag": false
+              },
+              {
+                "price": 1003.2,
+                "buyQuantity": 26,
+                "sellQuantity": 0,
+                "flag": false
+              },
+              {
+                "price": 1003.8,
+                "buyQuantity": 10,
+                "sellQuantity": 0,
+                "flag": false
+              },
+              {
+                "price": 1004,
+                "buyQuantity": 218,
+                "sellQuantity": 0,
+                "flag": false
+              },
+              {
+                "price": 1004.4,
+                "buyQuantity": 1,
+                "sellQuantity": 0,
+                "flag": false
+              },
+              {
+                "price": 1005,
+                "buyQuantity": 0,
+                "sellQuantity": 48191,
+                "flag": true
+              },
+              {
+                "price": 1005.5,
+                "buyQuantity": 0,
+                "sellQuantity": 18,
+                "flag": false
+              },
+              {
+                "price": 1009,
+                "buyQuantity": 0,
+                "sellQuantity": 2350,
+                "flag": false
+              },
+              {
+                "price": 1009.8,
+                "buyQuantity": 0,
+                "sellQuantity": 150,
+                "flag": false
+              },
+              {
+                "price": 1011,
+                "buyQuantity": 0,
+                "sellQuantity": 1,
+                "flag": false
+              }
+            ],
+            "atoBuyQuantity": 0,
+            "atoSellQuantity": 0,
+            "totalBuyQuantity": 20299,
+            "totalSellQuantity": 132504,
+            "basePrice": 1043.2,
+            "averagePrice": null,
+            "totTradedQty": 0,
+            "avgTrdPrice": 1005,
+            "highPrice": 1005,
+            "lowPrice": 1005,
+            "bestBidPrice": 1004.4,
+            "bestBidQty": 1,
+            "bestAskPrice": 1005,
+            "bestAskQty": 48191,
+            "indicativeValue": null,
+            "lastUpdateTime": "24-Sep-2026 09:09:14",
+            "prevClose": 1043.2,
+            "ffmMarketCap": 2686091108611.83,
+            "yearHigh": 1176.4,
+            "yearLow": 787.9
+          }
+        ],
+        "indicativeTotalQuantity": 0,
+        "unchanged": 1,
+        "index": {
+          "indexName": "NIFTY 50",
+          "ltp": 23221.8,
+          "change": -225,
+          "perChange": -0.96,
+          "status": "close"
+        },
+        "totalQuantity": 2666765,
+        "statusMsg": "Pre-Open Order Collection Closed",
+        "advances": 2,
+        "indicativeTotalValue": 0,
+        "totalFFM": 106147608453839.3,
+        "status": "Closed",
+        "timestamp": "24-Sep-2026 09:09:13"
+      }
+    },
+    {
+      "id": "pre-open-nifty-bank",
+      "name": "Pre-Open Market: Nifty Bank",
+      "categoryPath": "MARKET DATA > (Equity) Pre-Open Market",
+      "category": "Pre-Open Market",
+      "segment": "Equity",
+      "path": "/api/NextApi/apiClient/cmPreOpenApi?functionName=getPreOpenData&category=NIFTY%20BANK&symbol=",
+      "baseUrl": "https://www.nseindia.com",
+      "method": "GET",
+      "frequencyType": "Pre-Market Discovery",
+      "fetchTime": ">09:08 AM (Pre-Market)",
+      "publishTimes": [
+        {
+          "window": "Pre-Open Order Collection & Match",
+          "time": ">09:08 AM",
+          "description": "Equilibrium price discovery auction completes at 09:08 AM for high-beta banking heavyweights."
+        }
+      ],
+      "description": "Returns pre-market opening indications, IEP order book quantities, best bid/ask, and advance/decline distribution for all Nifty Bank constituent stocks.",
+      "parameters": [
+        {
+          "name": "functionName",
+          "type": "string",
+          "default": "getPreOpenData",
+          "description": "API function"
+        },
+        {
+          "name": "category",
+          "type": "string",
+          "default": "NIFTY BANK",
+          "description": "Market index category"
+        },
+        {
+          "name": "symbol",
+          "type": "string",
+          "default": "",
+          "description": "Optional symbol filter"
+        }
+      ],
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/122.0.0.0 Safari/537.36",
+        "Referer": "https://www.nseindia.com/market-data/pre-open-market-cm-and-emerge-market"
+      },
+      "sampleResponse": {
+        "totalValue": 1220287707.23,
+        "declines": 14,
+        "data": [
+          {
+            "identifier": "HDFCBANKEQN",
+            "symbol": "HDFCBANK",
+            "series": "EQ",
+            "marketType": "N",
+            "IEP": 0,
+            "iepOrderBook": 725,
+            "change": -12.25,
+            "perChange": -1.66,
+            "finalPrice": 725,
+            "finalValue": 668062850,
+            "finalQuantity": 921466,
+            "iiqAtEP": 0,
+            "iiqAtMO": 0,
+            "orderBook": [
+              {
+                "price": 724.2,
+                "buyQuantity": 20,
+                "sellQuantity": 0,
+                "flag": false
+              },
+              {
+                "price": 724.25,
+                "buyQuantity": 1,
+                "sellQuantity": 0,
+                "flag": false
+              },
+              {
+                "price": 724.3,
+                "buyQuantity": 20,
+                "sellQuantity": 0,
+                "flag": false
+              },
+              {
+                "price": 724.75,
+                "buyQuantity": 34,
+                "sellQuantity": 0,
+                "flag": false
+              },
+              {
+                "price": 725,
+                "buyQuantity": 9859,
+                "sellQuantity": 0,
+                "flag": true
+              },
+              {
+                "price": 725.4,
+                "buyQuantity": 0,
+                "sellQuantity": 1400,
+                "flag": false
+              },
+              {
+                "price": 725.5,
+                "buyQuantity": 0,
+                "sellQuantity": 25,
+                "flag": false
+              },
+              {
+                "price": 726,
+                "buyQuantity": 0,
+                "sellQuantity": 2500,
+                "flag": false
+              },
+              {
+                "price": 726.4,
+                "buyQuantity": 0,
+                "sellQuantity": 500,
+                "flag": false
+              },
+              {
+                "price": 727,
+                "buyQuantity": 0,
+                "sellQuantity": 30,
+                "flag": false
+              }
+            ],
+            "atoBuyQuantity": 0,
+            "atoSellQuantity": 0,
+            "totalBuyQuantity": 294271,
+            "totalSellQuantity": 546194,
+            "basePrice": 737.25,
+            "averagePrice": null,
+            "totTradedQty": 0,
+            "avgTrdPrice": 725,
+            "highPrice": 725,
+            "lowPrice": 725,
+            "bestBidPrice": 725,
+            "bestBidQty": 9859,
+            "bestAskPrice": 725.4,
+            "bestAskQty": 1400,
+            "indicativeValue": null,
+            "lastUpdateTime": "24-Sep-2026 09:09:14",
+            "prevClose": 737.25,
+            "ffmMarketCap": 11082459874458.6,
+            "yearHigh": 1020.5,
+            "yearLow": 681.9
+          },
+          {
+            "identifier": "AXISBANKEQN",
+            "symbol": "AXISBANK",
+            "series": "EQ",
+            "marketType": "N",
+            "IEP": 0,
+            "iepOrderBook": 1225.2,
+            "change": -18,
+            "perChange": -1.45,
+            "finalPrice": 1225.2,
+            "finalValue": 193641634.8,
+            "finalQuantity": 158049,
+            "iiqAtEP": 0,
+            "iiqAtMO": 0,
+            "orderBook": [
+              {
+                "price": 1224,
+                "buyQuantity": 71,
+                "sellQuantity": 0,
+                "flag": false
+              },
+              {
+                "price": 1224.2,
+                "buyQuantity": 1,
+                "sellQuantity": 0,
+                "flag": false
+              },
+              {
+                "price": 1224.8,
+                "buyQuantity": 800,
+                "sellQuantity": 0,
+                "flag": false
+              },
+              {
+                "price": 1225,
+                "buyQuantity": 754,
+                "sellQuantity": 0,
+                "flag": false
+              },
+              {
+                "price": 1225.1,
+                "buyQuantity": 713,
+                "sellQuantity": 0,
+                "flag": false
+              },
+              {
+                "price": 1225.2,
+                "buyQuantity": 0,
+                "sellQuantity": 3123,
+                "flag": true
+              },
+              {
+                "price": 1225.3,
+                "buyQuantity": 0,
+                "sellQuantity": 6,
+                "flag": false
+              },
+              {
+                "price": 1230.8,
+                "buyQuantity": 0,
+                "sellQuantity": 2,
+                "flag": false
+              },
+              {
+                "price": 1233,
+                "buyQuantity": 0,
+                "sellQuantity": 300,
+                "flag": false
+              },
+              {
+                "price": 1234,
+                "buyQuantity": 0,
+                "sellQuantity": 500,
+                "flag": false
+              }
+            ],
+            "atoBuyQuantity": 0,
+            "atoSellQuantity": 0,
+            "totalBuyQuantity": 48179,
+            "totalSellQuantity": 63766,
+            "basePrice": 1243.2,
+            "averagePrice": null,
+            "totTradedQty": 0,
+            "avgTrdPrice": 1225.2,
+            "highPrice": 1225.2,
+            "lowPrice": 1225.2,
+            "bestBidPrice": 1225.1,
+            "bestBidQty": 713,
+            "bestAskPrice": 1225.2,
+            "bestAskQty": 3123,
+            "indicativeValue": null,
+            "lastUpdateTime": "24-Sep-2026 09:09:14",
+            "prevClose": 1243.2,
+            "ffmMarketCap": 3512315389658.93,
+            "yearHigh": 1418.3,
+            "yearLow": 1125.4
+          },
+          {
+            "identifier": "ICICIBANKEQN",
+            "symbol": "ICICIBANK",
+            "series": "EQ",
+            "marketType": "N",
+            "IEP": 0,
+            "iepOrderBook": 1333.1,
+            "change": -6.9,
+            "perChange": -0.51,
+            "finalPrice": 1333.1,
+            "finalValue": 135426962.8,
+            "finalQuantity": 101588,
+            "iiqAtEP": 0,
+            "iiqAtMO": 0,
+            "orderBook": [
+              {
+                "price": 1332.1,
+                "buyQuantity": 401,
+                "sellQuantity": 0,
+                "flag": false
+              },
+              {
+                "price": 1332.5,
+                "buyQuantity": 1,
+                "sellQuantity": 0,
+                "flag": false
+              },
+              {
+                "price": 1332.6,
+                "buyQuantity": 1,
+                "sellQuantity": 0,
+                "flag": false
+              },
+              {
+                "price": 1333,
+                "buyQuantity": 403,
+                "sellQuantity": 0,
+                "flag": false
+              },
+              {
+                "price": 1333.1,
+                "buyQuantity": 3235,
+                "sellQuantity": 0,
+                "flag": true
+              },
+              {
+                "price": 1333.3,
+                "buyQuantity": 0,
+                "sellQuantity": 111,
+                "flag": false
+              },
+              {
+                "price": 1333.4,
+                "buyQuantity": 0,
+                "sellQuantity": 2249,
+                "flag": false
+              },
+              {
+                "price": 1334,
+                "buyQuantity": 0,
+                "sellQuantity": 4000,
+                "flag": false
+              },
+              {
+                "price": 1334.9,
+                "buyQuantity": 0,
+                "sellQuantity": 75,
+                "flag": false
+              },
+              {
+                "price": 1335,
+                "buyQuantity": 0,
+                "sellQuantity": 144,
+                "flag": false
+              }
+            ],
+            "atoBuyQuantity": 0,
+            "atoSellQuantity": 0,
+            "totalBuyQuantity": 32865,
+            "totalSellQuantity": 53954,
+            "basePrice": 1340,
+            "averagePrice": null,
+            "totTradedQty": 0,
+            "avgTrdPrice": 1333.1,
+            "highPrice": 1333.1,
+            "lowPrice": 1333.1,
+            "bestBidPrice": 1333.1,
+            "bestBidQty": 3235,
+            "bestAskPrice": 1333.3,
+            "bestAskQty": 111,
+            "indicativeValue": null,
+            "lastUpdateTime": "24-Sep-2026 09:09:14",
+            "prevClose": 1340,
+            "ffmMarketCap": 9529778442016.44,
+            "yearHigh": 1480,
+            "yearLow": 1187.6
+          },
+          {
+            "identifier": "SBINEQN",
+            "symbol": "SBIN",
+            "series": "EQ",
+            "marketType": "N",
+            "IEP": 0,
+            "iepOrderBook": 982.3,
+            "change": -11.8,
+            "perChange": -1.19,
+            "finalPrice": 982.3,
+            "finalValue": 66815063.7,
+            "finalQuantity": 68019,
+            "iiqAtEP": 0,
+            "iiqAtMO": 0,
+            "orderBook": [
+              {
+                "price": 981.9,
+                "buyQuantity": 301,
+                "sellQuantity": 0,
+                "flag": false
+              },
+              {
+                "price": 982,
+                "buyQuantity": 2737,
+                "sellQuantity": 0,
+                "flag": false
+              },
+              {
+                "price": 982.1,
+                "buyQuantity": 1630,
+                "sellQuantity": 0,
+                "flag": false
+              },
+              {
+                "price": 982.2,
+                "buyQuantity": 300,
+                "sellQuantity": 0,
+                "flag": false
+              },
+              {
+                "price": 982.3,
+                "buyQuantity": 579,
+                "sellQuantity": 0,
+                "flag": true
+              },
+              {
+                "price": 984,
+                "buyQuantity": 0,
+                "sellQuantity": 9,
+                "flag": false
+              },
+              {
+                "price": 984.1,
+                "buyQuantity": 0,
+                "sellQuantity": 261,
+                "flag": false
+              },
+              {
+                "price": 984.2,
+                "buyQuantity": 0,
+                "sellQuantity": 3,
+                "flag": false
+              },
+              {
+                "price": 984.5,
+                "buyQuantity": 0,
+                "sellQuantity": 150,
+                "flag": false
+              },
+              {
+                "price": 984.9,
+                "buyQuantity": 0,
+                "sellQuantity": 100,
+                "flag": false
+              }
+            ],
+            "atoBuyQuantity": 0,
+            "atoSellQuantity": 0,
+            "totalBuyQuantity": 56142,
+            "totalSellQuantity": 242608,
+            "basePrice": 994.1,
+            "averagePrice": null,
+            "totTradedQty": 0,
+            "avgTrdPrice": 982.3,
+            "highPrice": 982.3,
+            "lowPrice": 982.3,
+            "bestBidPrice": 982.3,
+            "bestBidQty": 579,
+            "bestAskPrice": 984,
+            "bestAskQty": 9,
+            "indicativeValue": null,
+            "lastUpdateTime": "24-Sep-2026 09:09:13",
+            "prevClose": 994.1,
+            "ffmMarketCap": 4048994190700.53,
+            "yearHigh": 1234.7,
+            "yearLow": 851.2
+          },
+          {
+            "identifier": "IDFCFIRSTBEQN",
+            "symbol": "IDFCFIRSTB",
+            "series": "EQ",
+            "marketType": "N",
+            "IEP": 0,
+            "iepOrderBook": 84.5,
+            "change": -3.4,
+            "perChange": -3.87,
+            "finalPrice": 84.5,
+            "finalValue": 57936580,
+            "finalQuantity": 685640,
+            "iiqAtEP": 0,
+            "iiqAtMO": 0,
+            "orderBook": [
+              {
+                "price": 84.2,
+                "buyQuantity": 460,
+                "sellQuantity": 0,
+                "flag": false
+              },
+              {
+                "price": 84.21,
+                "buyQuantity": 500,
+                "sellQuantity": 0,
+                "flag": false
+              },
+              {
+                "price": 84.25,
+                "buyQuantity": 755,
+                "sellQuantity": 0,
+                "flag": false
+              },
+              {
+                "price": 84.3,
+                "buyQuantity": 110,
+                "sellQuantity": 0,
+                "flag": false
+              },
+              {
+                "price": 84.4,
+                "buyQuantity": 470,
+                "sellQuantity": 0,
+                "flag": false
+              },
+              {
+                "price": 84.5,
+                "buyQuantity": 0,
+                "sellQuantity": 23046,
+                "flag": true
+              },
+              {
+                "price": 84.6,
+                "buyQuantity": 0,
+                "sellQuantity": 2800,
+                "flag": false
+              },
+              {
+                "price": 84.8,
+                "buyQuantity": 0,
+                "sellQuantity": 50,
+                "flag": false
+              },
+              {
+                "price": 84.92,
+                "buyQuantity": 0,
+                "sellQuantity": 6,
+                "flag": false
+              },
+              {
+                "price": 85,
+                "buyQuantity": 0,
+                "sellQuantity": 6620,
+                "flag": false
+              }
+            ],
+            "atoBuyQuantity": 0,
+            "atoSellQuantity": 0,
+            "totalBuyQuantity": 115350,
+            "totalSellQuantity": 1963506,
+            "basePrice": 87.9,
+            "averagePrice": null,
+            "totTradedQty": 0,
+            "avgTrdPrice": 84.5,
+            "highPrice": 84.5,
+            "lowPrice": 84.5,
+            "bestBidPrice": 84.4,
+            "bestBidQty": 470,
+            "bestAskPrice": 84.5,
+            "bestAskQty": 23046,
+            "indicativeValue": null,
+            "lastUpdateTime": "24-Sep-2026 09:09:14",
+            "prevClose": 87.9,
+            "ffmMarketCap": 559653876117.58,
+            "yearHigh": 89.61,
+            "yearLow": 58.08
+          }
+        ],
+        "indicativeTotalQuantity": 0,
+        "unchanged": 0,
+        "index": {
+          "indexName": "NIFTY BANK",
+          "ltp": 55710.6,
+          "change": -838.3,
+          "perChange": -1.48,
+          "status": "close"
+        },
+        "totalQuantity": 2589840,
+        "statusMsg": "Pre-Open Order Collection Closed",
+        "advances": 0,
+        "indicativeTotalValue": 0,
+        "totalFFM": 35722468019084.02,
+        "status": "Closed",
+        "timestamp": "24-Sep-2026 09:09:13"
+      }
+    },
+    {
+      "id": "pre-open-all-stocks",
+      "name": "Pre-Open Market: All Stocks",
+      "categoryPath": "MARKET DATA > (Equity) Pre-Open Market",
+      "category": "Pre-Open Market",
+      "segment": "Equity",
+      "path": "/api/NextApi/apiClient/cmPreOpenApi?functionName=getPreOpenData&category=ALL&symbol=",
+      "baseUrl": "https://www.nseindia.com",
+      "method": "GET",
+      "frequencyType": "Pre-Market Discovery",
+      "fetchTime": ">09:08 AM (Pre-Market)",
+      "publishTimes": [
+        {
+          "window": "Full Market Pre-Open Discovery",
+          "time": ">09:08 AM",
+          "description": "Entire universe of listed securities participating in the pre-open auction."
+        }
+      ],
+      "description": "Returns complete pre-open discovery data across all listed equity securities on NSE, including IEP prices, total buy/sell quantities, and opening market value.",
+      "parameters": [
+        {
+          "name": "functionName",
+          "type": "string",
+          "default": "getPreOpenData",
+          "description": "API function"
+        },
+        {
+          "name": "category",
+          "type": "string",
+          "default": "ALL",
+          "description": "All listed equities"
+        },
+        {
+          "name": "symbol",
+          "type": "string",
+          "default": "",
+          "description": "Optional symbol filter"
+        }
+      ],
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/122.0.0.0 Safari/537.36",
+        "Referer": "https://www.nseindia.com/market-data/pre-open-market-cm-and-emerge-market"
+      },
+      "sampleResponse": {
+        "totalValue": 6258768377.53,
+        "declines": 1429,
+        "data": [
+          {
+            "identifier": "HDFCBANKEQN",
+            "symbol": "HDFCBANK",
+            "series": "EQ",
+            "marketType": "N",
+            "IEP": 0,
+            "iepOrderBook": 725,
+            "change": -12.25,
+            "perChange": -1.66,
+            "finalPrice": 725,
+            "finalValue": 668062850,
+            "finalQuantity": 921466,
+            "iiqAtEP": 0,
+            "iiqAtMO": 0,
+            "orderBook": [
+              {
+                "price": 724.2,
+                "buyQuantity": 20,
+                "sellQuantity": 0,
+                "flag": false
+              },
+              {
+                "price": 724.25,
+                "buyQuantity": 1,
+                "sellQuantity": 0,
+                "flag": false
+              },
+              {
+                "price": 724.3,
+                "buyQuantity": 20,
+                "sellQuantity": 0,
+                "flag": false
+              },
+              {
+                "price": 724.75,
+                "buyQuantity": 34,
+                "sellQuantity": 0,
+                "flag": false
+              },
+              {
+                "price": 725,
+                "buyQuantity": 9859,
+                "sellQuantity": 0,
+                "flag": true
+              },
+              {
+                "price": 725.4,
+                "buyQuantity": 0,
+                "sellQuantity": 1400,
+                "flag": false
+              },
+              {
+                "price": 725.5,
+                "buyQuantity": 0,
+                "sellQuantity": 25,
+                "flag": false
+              },
+              {
+                "price": 726,
+                "buyQuantity": 0,
+                "sellQuantity": 2500,
+                "flag": false
+              },
+              {
+                "price": 726.4,
+                "buyQuantity": 0,
+                "sellQuantity": 500,
+                "flag": false
+              },
+              {
+                "price": 727,
+                "buyQuantity": 0,
+                "sellQuantity": 30,
+                "flag": false
+              }
+            ],
+            "atoBuyQuantity": 0,
+            "atoSellQuantity": 0,
+            "totalBuyQuantity": 294271,
+            "totalSellQuantity": 546194,
+            "basePrice": 737.25,
+            "averagePrice": null,
+            "totTradedQty": 0,
+            "avgTrdPrice": 725,
+            "highPrice": 725,
+            "lowPrice": 725,
+            "bestBidPrice": 725,
+            "bestBidQty": 9859,
+            "bestAskPrice": 725.4,
+            "bestAskQty": 1400,
+            "indicativeValue": null,
+            "lastUpdateTime": "24-Sep-2026 09:09:14",
+            "prevClose": 737.25,
+            "ffmMarketCap": 11082459874458.6,
+            "yearHigh": 1020.5,
+            "yearLow": 681.9
+          },
+          {
+            "identifier": "CHOLAFINEQN",
+            "symbol": "CHOLAFIN",
+            "series": "EQ",
+            "marketType": "N",
+            "IEP": 0,
+            "iepOrderBook": 1630,
+            "change": -144,
+            "perChange": -8.12,
+            "finalPrice": 1630,
+            "finalValue": 249138980,
+            "finalQuantity": 152846,
+            "iiqAtEP": 0,
+            "iiqAtMO": 0,
+            "orderBook": [
+              {
+                "price": 1626,
+                "buyQuantity": 64,
+                "sellQuantity": 0,
+                "flag": false
+              },
+              {
+                "price": 1628,
+                "buyQuantity": 1000,
+                "sellQuantity": 0,
+                "flag": false
+              },
+              {
+                "price": 1628.7,
+                "buyQuantity": 1126,
+                "sellQuantity": 0,
+                "flag": false
+              },
+              {
+                "price": 1629.9,
+                "buyQuantity": 2168,
+                "sellQuantity": 0,
+                "flag": false
+              },
+              {
+                "price": 1630,
+                "buyQuantity": 1572,
+                "sellQuantity": 0,
+                "flag": true
+              },
+              {
+                "price": 1650,
+                "buyQuantity": 0,
+                "sellQuantity": 20,
+                "flag": false
+              },
+              {
+                "price": 1689.9,
+                "buyQuantity": 0,
+                "sellQuantity": 400,
+                "flag": false
+              },
+              {
+                "price": 1700,
+                "buyQuantity": 0,
+                "sellQuantity": 50,
+                "flag": false
+              },
+              {
+                "price": 1703.1,
+                "buyQuantity": 0,
+                "sellQuantity": 1950,
+                "flag": false
+              },
+              {
+                "price": 1720,
+                "buyQuantity": 0,
+                "sellQuantity": 58,
+                "flag": false
+              }
+            ],
+            "atoBuyQuantity": 0,
+            "atoSellQuantity": 0,
+            "totalBuyQuantity": 44540,
+            "totalSellQuantity": 78136,
+            "basePrice": 1774,
+            "averagePrice": null,
+            "totTradedQty": 0,
+            "avgTrdPrice": 1630,
+            "highPrice": 1630,
+            "lowPrice": 1630,
+            "bestBidPrice": 1630,
+            "bestBidQty": 1572,
+            "bestAskPrice": 1650,
+            "bestAskQty": 20,
+            "indicativeValue": null,
+            "lastUpdateTime": "24-Sep-2026 09:09:14",
+            "prevClose": 1774,
+            "ffmMarketCap": 704704626698.19,
+            "yearHigh": 1952.5,
+            "yearLow": 1299.4
+          },
+          {
+            "identifier": "RELIANCEEQN",
+            "symbol": "RELIANCE",
+            "series": "EQ",
+            "marketType": "N",
+            "IEP": 0,
+            "iepOrderBook": 1236.6,
+            "change": -11.4,
+            "perChange": -0.91,
+            "finalPrice": 1236.6,
+            "finalValue": 236508406.2,
+            "finalQuantity": 191257,
+            "iiqAtEP": 0,
+            "iiqAtMO": 0,
+            "orderBook": [
+              {
+                "price": 1236.2,
+                "buyQuantity": 30,
+                "sellQuantity": 0,
+                "flag": false
+              },
+              {
+                "price": 1236.3,
+                "buyQuantity": 3001,
+                "sellQuantity": 0,
+                "flag": false
+              },
+              {
+                "price": 1236.4,
+                "buyQuantity": 5,
+                "sellQuantity": 0,
+                "flag": false
+              },
+              {
+                "price": 1236.5,
+                "buyQuantity": 1138,
+                "sellQuantity": 0,
+                "flag": false
+              },
+              {
+                "price": 1236.6,
+                "buyQuantity": 2417,
+                "sellQuantity": 0,
+                "flag": true
+              },
+              {
+                "price": 1236.9,
+                "buyQuantity": 0,
+                "sellQuantity": 10000,
+                "flag": false
+              },
+              {
+                "price": 1237,
+                "buyQuantity": 0,
+                "sellQuantity": 269,
+                "flag": false
+              },
+              {
+                "price": 1238,
+                "buyQuantity": 0,
+                "sellQuantity": 11602,
+                "flag": false
+              },
+              {
+                "price": 1238.9,
+                "buyQuantity": 0,
+                "sellQuantity": 9,
+                "flag": false
+              },
+              {
+                "price": 1239,
+                "buyQuantity": 0,
+                "sellQuantity": 42,
+                "flag": false
+              }
+            ],
+            "atoBuyQuantity": 0,
+            "atoSellQuantity": 0,
+            "totalBuyQuantity": 150931,
+            "totalSellQuantity": 301178,
+            "basePrice": 1248,
+            "averagePrice": null,
+            "totTradedQty": 0,
+            "avgTrdPrice": 1236.6,
+            "highPrice": 1236.6,
+            "lowPrice": 1236.6,
+            "bestBidPrice": 1236.6,
+            "bestBidQty": 2417,
+            "bestAskPrice": 1236.9,
+            "bestAskQty": 10000,
+            "indicativeValue": null,
+            "lastUpdateTime": "24-Sep-2026 09:09:14",
+            "prevClose": 1248,
+            "ffmMarketCap": 8330654367641.53,
+            "yearHigh": 1611.8,
+            "yearLow": 1219.2
+          },
+          {
+            "identifier": "SEDEMACEQN",
+            "symbol": "SEDEMAC",
+            "series": "EQ",
+            "marketType": "N",
+            "IEP": 0,
+            "iepOrderBook": 2998,
+            "change": -37.2,
+            "perChange": -1.23,
+            "finalPrice": 2998,
+            "finalValue": 211526888,
+            "finalQuantity": 70556,
+            "iiqAtEP": 0,
+            "iiqAtMO": 0,
+            "orderBook": [
+              {
+                "price": 2991.3,
+                "buyQuantity": 1,
+                "sellQuantity": 0,
+                "flag": false
+              },
+              {
+                "price": 2992,
+                "buyQuantity": 55,
+                "sellQuantity": 0,
+                "flag": false
+              },
+              {
+                "price": 2995,
+                "buyQuantity": 400,
+                "sellQuantity": 0,
+                "flag": false
+              },
+              {
+                "price": 2997,
+                "buyQuantity": 1000,
+                "sellQuantity": 0,
+                "flag": false
+              },
+              {
+                "price": 2998,
+                "buyQuantity": 674,
+                "sellQuantity": 0,
+                "flag": true
+              },
+              {
+                "price": 2999,
+                "buyQuantity": 0,
+                "sellQuantity": 10,
+                "flag": false
+              },
+              {
+                "price": 3000,
+                "buyQuantity": 0,
+                "sellQuantity": 2,
+                "flag": false
+              },
+              {
+                "price": 3005,
+                "buyQuantity": 0,
+                "sellQuantity": 25,
+                "flag": false
+              },
+              {
+                "price": 3010,
+                "buyQuantity": 0,
+                "sellQuantity": 15835,
+                "flag": false
+              },
+              {
+                "price": 3020,
+                "buyQuantity": 0,
+                "sellQuantity": 27,
+                "flag": false
+              }
+            ],
+            "atoBuyQuantity": 0,
+            "atoSellQuantity": 0,
+            "totalBuyQuantity": 14949,
+            "totalSellQuantity": 19306,
+            "basePrice": 3035.2,
+            "averagePrice": null,
+            "totTradedQty": 0,
+            "avgTrdPrice": 2998,
+            "highPrice": 2998,
+            "lowPrice": 2998,
+            "bestBidPrice": 2998,
+            "bestBidQty": 674,
+            "bestAskPrice": 2999,
+            "bestAskQty": 10,
+            "indicativeValue": null,
+            "lastUpdateTime": "24-Sep-2026 09:09:14",
+            "prevClose": 3035.2,
+            "ffmMarketCap": 32470423433.12,
+            "yearHigh": 3368.9,
+            "yearLow": 1413.1
+          },
+          {
+            "identifier": "HEROMOTORSEQN",
+            "symbol": "HEROMOTORS",
+            "series": "EQ",
+            "marketType": "N",
+            "IEP": 0,
+            "iepOrderBook": 103,
+            "change": 4.6,
+            "perChange": 4.67,
+            "finalPrice": 103,
+            "finalValue": 206374611,
+            "finalQuantity": 2003637,
+            "iiqAtEP": 0,
+            "iiqAtMO": 0,
+            "orderBook": [
+              {
+                "price": 102.8,
+                "buyQuantity": 206,
+                "sellQuantity": 0,
+                "flag": false
+              },
+              {
+                "price": 102.83,
+                "buyQuantity": 28345,
+                "sellQuantity": 0,
+                "flag": false
+              },
+              {
+                "price": 102.9,
+                "buyQuantity": 4300,
+                "sellQuantity": 0,
+                "flag": false
+              },
+              {
+                "price": 102.99,
+                "buyQuantity": 250,
+                "sellQuantity": 0,
+                "flag": false
+              },
+              {
+                "price": 103,
+                "buyQuantity": 12091,
+                "sellQuantity": 0,
+                "flag": true
+              },
+              {
+                "price": 103.4,
+                "buyQuantity": 0,
+                "sellQuantity": 52287,
+                "flag": false
+              },
+              {
+                "price": 103.46,
+                "buyQuantity": 0,
+                "sellQuantity": 356,
+                "flag": false
+              },
+              {
+                "price": 103.5,
+                "buyQuantity": 0,
+                "sellQuantity": 51807,
+                "flag": false
+              },
+              {
+                "price": 103.6,
+                "buyQuantity": 0,
+                "sellQuantity": 200,
+                "flag": false
+              },
+              {
+                "price": 103.7,
+                "buyQuantity": 0,
+                "sellQuantity": 10200,
+                "flag": false
+              }
+            ],
+            "atoBuyQuantity": 0,
+            "atoSellQuantity": 0,
+            "totalBuyQuantity": 6058723,
+            "totalSellQuantity": 4220088,
+            "basePrice": 98.4,
+            "averagePrice": null,
+            "totTradedQty": 0,
+            "avgTrdPrice": 103,
+            "highPrice": 103,
+            "lowPrice": 103,
+            "bestBidPrice": 103,
+            "bestBidQty": 12091,
+            "bestAskPrice": 103.4,
+            "bestAskQty": 52287,
+            "indicativeValue": null,
+            "lastUpdateTime": "24-Sep-2026 09:09:14",
+            "prevClose": 98.4,
+            "ffmMarketCap": 8586164667.7,
+            "yearHigh": 118.08,
+            "yearLow": 80.5
+          }
+        ],
+        "indicativeTotalQuantity": 0,
+        "unchanged": 224,
+        "index": {
+          "indexName": null,
+          "ltp": null,
+          "change": null,
+          "perChange": null,
+          "status": null
+        },
+        "totalQuantity": 36108106,
+        "statusMsg": "Pre-Open Order Collection Closed",
+        "advances": 600,
+        "indicativeTotalValue": 0,
+        "totalFFM": 217731038960810.78,
+        "status": "Closed",
+        "timestamp": "24-Sep-2026 09:09:13"
+      }
+    },
+    {
+      "id": "large-deals-all",
+      "name": "ALL Large Deals (Bulk, Block & Short Selling)",
+      "shortName": "Large Deals",
+      "categoryPath": "MARKET DATA > Large Deals",
+      "category": "Large Deals",
+      "segment": "Capital Market",
+      "path": "/api/snapshot-capital-market-largedeal",
+      "baseUrl": "https://www.nseindia.com",
+      "method": "GET",
+      "frequencyType": "Multiple Times Daily (3 Windows)",
+      "fetchTime": "9:12am\u20139:15am | >2:20pm | After Market Hours",
+      "publishTimes": [
+        {
+          "window": "Morning Block Window",
+          "time": "Between 9:12 AM and 9:15 AM",
+          "description": "Block deals executed in the morning pre-market window (8:45 AM - 9:00 AM) are published here before cash open."
+        },
+        {
+          "window": "Afternoon Block Window",
+          "time": "After 2:20 PM (2:25 PM - 2:35 PM)",
+          "description": "Block deals executed in the afternoon window (2:05 PM - 2:20 PM) are published during the live market."
+        },
+        {
+          "window": "Bulk Deals & Short Selling (EOD)",
+          "time": "After Market Hours (5:30 PM - 6:45 PM)",
+          "description": "Full consolidated list of open-market trades >= 0.5% equity float and institutional short sale disclosures."
+        }
+      ],
+      "description": "Single consolidated endpoint containing all Bulk Deals, Block Deals, and Short Selling transactions. Separate sub-views are provided below to inspect each dataset independently.",
+      "hasSubTabs": true,
+      "subTabs": [
+        {
+          "key": "BULK_DEALS_DATA",
+          "label": "Bulk Deals",
+          "badge": ">= 0.5% Shares",
+          "description": "Open-market trades crossing 0.5% of total listed equity capital (Published after market hours)."
+        },
+        {
+          "key": "BLOCK_DEALS_DATA",
+          "label": "Block Deals",
+          "badge": ">= \u20b910 Crore",
+          "description": "Large institutional transactions executed in 15-min designated windows (Published 9:12-9:15 AM and after 2:20 PM)."
+        },
+        {
+          "key": "SHORT_DEALS_DATA",
+          "label": "Short Selling",
+          "badge": "Institutional",
+          "description": "Institutional short positions backed by securities lending and borrowing (Published after market hours)."
+        }
+      ],
+      "parameters": [],
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/122.0.0.0 Safari/537.36",
+        "Referer": "https://www.nseindia.com/market-data/large-deals"
+      },
+      "sampleResponse": {
+        "as_on_date": "24-Sep-2026",
+        "BULK_DEALS_DATA": [
+          {
+            "buySell": "SELL",
+            "clientName": "ARIHANT CAPITAL MARKETS LIMITED",
+            "date": "24-Sep-2026",
+            "name": "Marsons Limited",
+            "qty": "1263104",
+            "remarks": "-",
+            "symbol": "MARSONS",
+            "watp": "129"
+          },
+          {
+            "buySell": "SELL",
+            "clientName": "PROGNOSIS SECURITIES PVT. LTD",
+            "date": "24-Sep-2026",
+            "name": "Marsons Limited",
+            "qty": "1217131",
+            "remarks": "-",
+            "symbol": "MARSONS",
+            "watp": "126.81"
+          },
+          {
+            "buySell": "SELL",
+            "clientName": "SPECIFIC WORLDWIDE LLP",
+            "date": "24-Sep-2026",
+            "name": "Mangalam Global Ent Ltd",
+            "qty": "3200000",
+            "remarks": "-",
+            "symbol": "MGEL",
+            "watp": "15.5"
+          },
+          {
+            "buySell": "SELL",
+            "clientName": "HRTI PRIVATE LIMITED",
+            "date": "24-Sep-2026",
+            "name": "Motisons Jewellers Ltd",
+            "qty": "8407550",
+            "remarks": "-",
+            "symbol": "MOTISONS",
+            "watp": "19.12"
+          },
+          {
+            "buySell": "SELL",
+            "clientName": "QE SECURITIES LLP",
+            "date": "24-Sep-2026",
+            "name": "Motisons Jewellers Ltd",
+            "qty": "6668644",
+            "remarks": "-",
+            "symbol": "MOTISONS",
+            "watp": "19.08"
+          },
+          {
+            "buySell": "SELL",
+            "clientName": "ARIHANT CAPITAL MARKETS LIMITED",
+            "date": "24-Sep-2026",
+            "name": "Motisons Jewellers Ltd",
+            "qty": "15416191",
+            "remarks": "-",
+            "symbol": "MOTISONS",
+            "watp": "19.21"
+          },
+          {
+            "buySell": "SELL",
+            "clientName": "EDORAS INVESTMENT HOLDINGS PTE LTD",
+            "date": "24-Sep-2026",
+            "name": "Nephrocare Health Serv L",
+            "qty": "842109",
+            "remarks": "-",
+            "symbol": "NEPHROPLUS",
+            "watp": "705.03"
+          },
+          {
+            "buySell": "SELL",
+            "clientName": "MANSI SHARE AND STOCK BROKING PRIVATE LIMITED",
+            "date": "24-Sep-2026",
+            "name": "Nephrocare Health Serv L",
+            "qty": "815776",
+            "remarks": "-",
+            "symbol": "NEPHROPLUS",
+            "watp": "710.45"
+          },
+          {
+            "buySell": "SELL",
+            "clientName": "EDORAS INVESTMENT HOLDINGS PTE LTD",
+            "date": "24-Sep-2026",
+            "name": "Nephrocare Health Serv L",
+            "qty": "842109",
+            "remarks": "-",
+            "symbol": "NEPHROPLUS",
+            "watp": "710.18"
+          },
+          {
+            "buySell": "SELL",
+            "clientName": "JUMP TRADING FINANCIAL INDIA PRIVATE LIMITED",
+            "date": "24-Sep-2026",
+            "name": "Ola Electric Mobility Ltd",
+            "qty": "28937065",
+            "remarks": "-",
+            "symbol": "OLAELEC",
+            "watp": "42.69"
+          }
+        ],
+        "BLOCK_DEALS_DATA": [
+          {
+            "buySell": "BUY",
+            "clientName": "SANOFI HEALTHCARE INDIA PRIVATE LIMITED",
+            "date": "24-Sep-2026",
+            "name": "Aventis Pharma Limited",
+            "qty": "3500000",
+            "remarks": null,
+            "symbol": "SANOFI",
+            "watp": "3052"
+          },
+          {
+            "buySell": "BUY",
+            "clientName": "GOVERNMENT OF SINGAPORE",
+            "date": "24-Sep-2026",
+            "name": "SEDEMAC Mechatronics Ltd",
+            "qty": "1023299",
+            "remarks": null,
+            "symbol": "SEDEMAC",
+            "watp": "3010"
+          },
+          {
+            "buySell": "BUY",
+            "clientName": "T Rowe Price Emerging Markets Discovery Equities",
+            "date": "24-Sep-2026",
+            "name": "SEDEMAC Mechatronics Ltd",
+            "qty": "289",
+            "remarks": null,
+            "symbol": "SEDEMAC",
+            "watp": "3010"
+          },
+          {
+            "buySell": "BUY",
+            "clientName": "T ROWE PRICE NEW ASIA FUND",
+            "date": "24-Sep-2026",
+            "name": "SEDEMAC Mechatronics Ltd",
+            "qty": "167026",
+            "remarks": null,
+            "symbol": "SEDEMAC",
+            "watp": "3010"
+          },
+          {
+            "buySell": "BUY",
+            "clientName": "T ROWE PRICE INTERNATIONAL SMALLCAP EQUITY TRUST",
+            "date": "24-Sep-2026",
+            "name": "SEDEMAC Mechatronics Ltd",
+            "qty": "51952",
+            "remarks": null,
+            "symbol": "SEDEMAC",
+            "watp": "3010"
+          },
+          {
+            "buySell": "BUY",
+            "clientName": "T ROWE PRICE INTERNATIONAL DISCOVERY FUND",
+            "date": "24-Sep-2026",
+            "name": "SEDEMAC Mechatronics Ltd",
+            "qty": "231768",
+            "remarks": null,
+            "symbol": "SEDEMAC",
+            "watp": "3010"
+          },
+          {
+            "buySell": "BUY",
+            "clientName": "T ROWE PRICE GLOBAL ALLOCATION FUND INC",
+            "date": "24-Sep-2026",
+            "name": "SEDEMAC Mechatronics Ltd",
+            "qty": "890",
+            "remarks": null,
+            "symbol": "SEDEMAC",
+            "watp": "3010"
+          },
+          {
+            "buySell": "BUY",
+            "clientName": "T ROWE PRICE FUNDS SICAV ASIAN EX JAPAN EQUITY FUND",
+            "date": "24-Sep-2026",
+            "name": "SEDEMAC Mechatronics Ltd",
+            "qty": "11191",
+            "remarks": null,
+            "symbol": "SEDEMAC",
+            "watp": "3010"
+          },
+          {
+            "buySell": "BUY",
+            "clientName": "MONETARY AUTHORITY OF SINGAPORE",
+            "date": "24-Sep-2026",
+            "name": "SEDEMAC Mechatronics Ltd",
+            "qty": "236922",
+            "remarks": null,
+            "symbol": "SEDEMAC",
+            "watp": "3010"
+          },
+          {
+            "buySell": "BUY",
+            "clientName": "ICICI PRUDENTIAL MUTUAL FUND",
+            "date": "24-Sep-2026",
+            "name": "SEDEMAC Mechatronics Ltd",
+            "qty": "149923",
+            "remarks": null,
+            "symbol": "SEDEMAC",
+            "watp": "3010"
+          }
+        ],
+        "SHORT_DEALS_DATA": [
+          {
+            "buySell": null,
+            "clientName": null,
+            "date": "23-Sep-2026",
+            "name": "ADANI PORT & SEZ LTD",
+            "qty": "1056",
+            "remarks": null,
+            "symbol": "ADANIPORTS",
+            "watp": null
+          },
+          {
+            "buySell": null,
+            "clientName": null,
+            "date": "23-Sep-2026",
+            "name": "DR AGARWALS HEALTH CARE L",
+            "qty": "23",
+            "remarks": null,
+            "symbol": "AGARWALEYE",
+            "watp": null
+          },
+          {
+            "buySell": null,
+            "clientName": null,
+            "date": "23-Sep-2026",
+            "name": "AMBER ENTERPRISES (I) LTD",
+            "qty": "20",
+            "remarks": null,
+            "symbol": "AMBER",
+            "watp": null
+          },
+          {
+            "buySell": null,
+            "clientName": null,
+            "date": "23-Sep-2026",
+            "name": "ANANT RAJ LIMITED",
+            "qty": "2000",
+            "remarks": null,
+            "symbol": "ANANTRAJ",
+            "watp": null
+          },
+          {
+            "buySell": null,
+            "clientName": null,
+            "date": "23-Sep-2026",
+            "name": "APOLLO HOSPITALS ENTERPRISE LIMITED",
+            "qty": "60",
+            "remarks": null,
+            "symbol": "APOLLOHOSP",
+            "watp": null
+          },
+          {
+            "buySell": null,
+            "clientName": null,
+            "date": "23-Sep-2026",
+            "name": "ASHOK LEYLAND LTD",
+            "qty": "150",
+            "remarks": null,
+            "symbol": "ASHOKLEY",
+            "watp": null
+          },
+          {
+            "buySell": null,
+            "clientName": null,
+            "date": "23-Sep-2026",
+            "name": "ASIAN PAINTS LIMITED",
+            "qty": "110",
+            "remarks": null,
+            "symbol": "ASIANPAINT",
+            "watp": null
+          },
+          {
+            "buySell": null,
+            "clientName": null,
+            "date": "23-Sep-2026",
+            "name": "BAJAJ CONSUMER CARE LTD",
+            "qty": "35",
+            "remarks": null,
+            "symbol": "BAJAJCON",
+            "watp": null
+          },
+          {
+            "buySell": null,
+            "clientName": null,
+            "date": "23-Sep-2026",
+            "name": "BAJAJ FINANCE LIMITED",
+            "qty": "66",
+            "remarks": null,
+            "symbol": "BAJFINANCE",
+            "watp": null
+          },
+          {
+            "buySell": null,
+            "clientName": null,
+            "date": "23-Sep-2026",
+            "name": "BANDHAN BANK LIMITED",
+            "qty": "1803",
+            "remarks": null,
+            "symbol": "BANDHANBNK",
+            "watp": null
+          }
+        ]
+      }
+    }
+  ]
+}
