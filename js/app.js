@@ -1,8 +1,8 @@
 /**
- * NSE India API Documentation & Explorer
+ * Indian Stock Exchanges (NSE & BSE) Official API Documentation & Explorer
  * Adaptive Architecture:
  * - Laptop / PC (>= 768px): Unified workstation view with horizontal tabs & live detail pane (the view you loved)
- * - Mobile (< 768px): Clean vertical scroll feed where Large Deals is directly visible, with 1-tap drill-down
+ * - Mobile (< 768px): Clean vertical scroll feed where all endpoints are visible with 1-tap drill-down
  */
 
 let apiDatabase = [];
@@ -14,6 +14,14 @@ let activeSubTabKey = null;
 
 // Track whether mobile is currently in detail drill-down
 let isMobileDetailActive = false;
+
+// Query parameters state for customizable endpoints (e.g. BSE Bulk Deals)
+let currentQueryParams = {
+  DealType: "1",
+  FDate: "25/09/2026",
+  TDate: "25/09/2026",
+  sc_code: ""
+};
 
 document.addEventListener("DOMContentLoaded", () => {
   initApp();
@@ -33,6 +41,14 @@ async function initApp() {
       activeApi = initialApi;
       if (initialApi.hasSubTabs && initialApi.subTabs && initialApi.subTabs.length > 0) {
         activeSubTabKey = initialApi.subTabs[0].key;
+      }
+      if (initialApi.hasDateRangeFilter && initialApi.dateRangeConfig) {
+        currentQueryParams = {
+          DealType: initialApi.dateRangeConfig.defaultDealType || "1",
+          FDate: initialApi.dateRangeConfig.defaultFDate || "25/09/2026",
+          TDate: initialApi.dateRangeConfig.defaultTDate || "25/09/2026",
+          sc_code: initialApi.dateRangeConfig.defaultScCode || ""
+        };
       }
     }
 
@@ -243,6 +259,14 @@ function renderDesktopTabs(list) {
       const isActive = activeApi && activeApi.id === api.id;
       const shortTitle = api.shortName || api.name.replace("Pre-Open Market: ", "");
       const isMulti = api.publishTimes && api.publishTimes.length > 1;
+      const isBse = api.exchange === "BSE";
+
+      let badgeText = "09:08 AM";
+      if (isBse) {
+        badgeText = "BSE EOD";
+      } else if (isMulti) {
+        badgeText = `${api.publishTimes.length} Windows`;
+      }
 
       return `
       <button onclick="selectApi('${api.id}', false)" id="desktop-tab-${api.id}"
@@ -255,8 +279,10 @@ function renderDesktopTabs(list) {
         <span class="text-[10px] px-1.5 py-0.2 rounded-full ${
           isActive
             ? "bg-amber-400 text-gray-900 font-extrabold"
-            : isMulti ? "bg-blue-100 text-blue-800 font-medium" : "bg-amber-100 text-amber-800 font-medium"
-        }">${isMulti ? `${api.publishTimes.length} Windows` : "09:08 AM"}</span>
+            : isBse
+              ? "bg-amber-100 text-amber-900 font-bold border border-amber-300"
+              : isMulti ? "bg-blue-100 text-blue-800 font-medium" : "bg-amber-100 text-amber-800 font-medium"
+        }">${badgeText}</span>
       </button>
     `;
     })
@@ -319,6 +345,7 @@ function renderMobileCardsFeed(list) {
   container.innerHTML = list
     .map((api) => {
       const isMulti = api.publishTimes && api.publishTimes.length > 1;
+      const isBse = api.exchange === "BSE";
 
       return `
       <!-- ENDPOINT CARD FOR MOBILE SCROLL VIEW -->
@@ -330,13 +357,15 @@ function renderMobileCardsFeed(list) {
             ${api.categoryPath || api.category}
           </span>
           <div class="flex items-center space-x-1 flex-shrink-0">
-            <span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-[#002855] text-white">
-              ${api.method || "GET"}
+            <span class="text-[10px] font-bold px-1.5 py-0.5 rounded ${isBse ? "bg-[#003b7a] text-amber-300" : "bg-[#002855] text-white"}">
+              ${api.exchange || "NSE"} &bull; ${api.method || "GET"}
             </span>
             ${
-              api.hasSubTabs
-                ? `<span class="text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-blue-50 text-blue-800 border border-blue-200">3 Datasets</span>`
-                : `<span class="text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200">Live</span>`
+              api.hasDateRangeFilter
+                ? `<span class="text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-blue-50 text-blue-800 border border-blue-200">Date Range</span>`
+                : api.hasSubTabs
+                  ? `<span class="text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-blue-50 text-blue-800 border border-blue-200">3 Datasets</span>`
+                  : `<span class="text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200">Live</span>`
             }
           </div>
         </div>
@@ -364,7 +393,7 @@ function renderMobileCardsFeed(list) {
             <span class="font-bold font-mono-code text-[11px] text-[#002855] truncate">${api.fetchTime}</span>
           </div>
           <span class="text-[10px] text-amber-700 font-semibold flex-shrink-0 ml-1">
-            ${isMulti ? `${api.publishTimes.length} Windows` : "Pre-Market"}
+            ${isBse ? "EOD" : isMulti ? `${api.publishTimes.length} Windows` : "Pre-Market"}
           </span>
         </div>
 
@@ -402,6 +431,132 @@ function mobileGoBackToList() {
 }
 
 // -------------------------------------------------------------
+// DYNAMIC PATH & QUERY PARAMETERS
+// -------------------------------------------------------------
+
+function getDynamicPath(api) {
+  if (!api) return "";
+  if (!api.hasDateRangeFilter) return api.path;
+
+  const dt = currentQueryParams.DealType || "1";
+  const fDate = currentQueryParams.FDate || "25/09/2026";
+  const tDate = currentQueryParams.TDate || "25/09/2026";
+  const sc = currentQueryParams.sc_code || "";
+
+  return `/BseIndiaAPI/api/BulkDealData_ng/w?DealType=${dt}&sc_code=${encodeURIComponent(sc)}&FDate=${fDate}&TDate=${tDate}`;
+}
+
+function handleParamChange() {
+  if (!activeApi || !activeApi.hasDateRangeFilter) return;
+
+  const dealTypeSelect = document.getElementById("query-deal-type");
+  const fDateInput = document.getElementById("query-fdate");
+  const tDateInput = document.getElementById("query-tdate");
+  const scCodeInput = document.getElementById("query-sc-code");
+
+  if (dealTypeSelect) currentQueryParams.DealType = dealTypeSelect.value;
+  if (fDateInput) currentQueryParams.FDate = fDateInput.value.trim();
+  if (tDateInput) currentQueryParams.TDate = tDateInput.value.trim();
+  if (scCodeInput) currentQueryParams.sc_code = scCodeInput.value.trim();
+
+  // If DealType was changed, automatically update the active subtab
+  if (currentQueryParams.DealType === "2" && activeSubTabKey !== "BLOCK_DEALS") {
+    activeSubTabKey = "BLOCK_DEALS";
+  } else if (currentQueryParams.DealType === "1" && activeSubTabKey === "BLOCK_DEALS") {
+    activeSubTabKey = "BULK_DEALS";
+  }
+
+  updateDynamicEndpointView();
+}
+
+function applyDatePreset(presetKey) {
+  if (!activeApi || !activeApi.hasDateRangeFilter) return;
+
+  let f = "25/09/2026";
+  let t = "25/09/2026";
+
+  if (presetKey === "closing") {
+    f = "25/09/2026";
+    t = "25/09/2026";
+  } else if (presetKey === "2days") {
+    f = "24/09/2026";
+    t = "25/09/2026";
+  } else if (presetKey === "7days") {
+    f = "19/09/2026";
+    t = "25/09/2026";
+  } else if (presetKey === "month") {
+    f = "01/09/2026";
+    t = "25/09/2026";
+  }
+
+  currentQueryParams.FDate = f;
+  currentQueryParams.TDate = t;
+
+  const fDateInput = document.getElementById("query-fdate");
+  const tDateInput = document.getElementById("query-tdate");
+  if (fDateInput) fDateInput.value = f;
+  if (tDateInput) tDateInput.value = t;
+
+  updateDynamicEndpointView();
+}
+
+function updateDynamicEndpointView() {
+  if (!activeApi) return;
+
+  const path = getDynamicPath(activeApi);
+  const fullUrl = `${activeApi.baseUrl}${path}`;
+
+  // Update URL span
+  const pathSpan = document.getElementById("endpoint-url-path");
+  if (pathSpan) pathSpan.innerText = path;
+
+  // Update Copy button action
+  const copyBtn = document.getElementById("btn-copy-url");
+  if (copyBtn) {
+    copyBtn.setAttribute("onclick", `navigator.clipboard.writeText('${fullUrl}'); window.showToast('Copied custom URL to clipboard!');`);
+  }
+
+  // Update Open in Exchange link
+  const openLink = document.getElementById("btn-open-exchange");
+  if (openLink) {
+    openLink.setAttribute("href", fullUrl);
+  }
+
+  // Update Active Range label
+  const rangeLabel = document.getElementById("active-range-label");
+  if (rangeLabel) {
+    rangeLabel.innerText = `${currentQueryParams.FDate} to ${currentQueryParams.TDate}`;
+  }
+
+  // Update subtab buttons highlight
+  document.querySelectorAll("[id^='subtab-btn-']").forEach((btn) => {
+    btn.className = "flex-shrink-0 px-3.5 py-2 rounded-xl text-xs font-semibold transition-all flex items-center space-x-1.5 border shadow-xs bg-white text-gray-700 border-gray-300 hover:bg-gray-100";
+  });
+  const activeBtn = document.getElementById(`subtab-btn-${activeSubTabKey}`);
+  if (activeBtn) {
+    activeBtn.className = "flex-shrink-0 px-3.5 py-2 rounded-xl text-xs font-bold transition-all flex items-center space-x-1.5 border shadow-sm bg-[#002855] text-white border-[#002855]";
+  }
+
+  // Update snippet
+  const activeSnippetType = document.getElementById("btn-snip-curl")?.classList.contains("bg-[#002855]") ? "curl" : "python";
+  updateSnippet(activeApi, activeSnippetType);
+
+  // Re-render json tree
+  renderJsonTreeForCurrentView();
+
+  // Update record count
+  const countElem = document.getElementById("viewer-record-count");
+  if (countElem) countElem.innerText = getActiveRecordCount(activeApi);
+
+  const statusLabel = document.getElementById("filter-status-label");
+  if (statusLabel) {
+    const data = getActiveViewData(activeApi);
+    const count = Array.isArray(data) ? data.length : 1;
+    statusLabel.innerText = `${count} Records Found`;
+  }
+}
+
+// -------------------------------------------------------------
 // SELECT API & DETAIL VIEW RENDERING
 // -------------------------------------------------------------
 
@@ -413,6 +568,16 @@ function selectApi(apiId, openInMobile = false) {
   
   if (openInMobile) {
     isMobileDetailActive = true;
+  }
+
+  // Initialize query params for date-filterable APIs
+  if (api.hasDateRangeFilter && api.dateRangeConfig) {
+    currentQueryParams = {
+      DealType: api.dateRangeConfig.defaultDealType || "1",
+      FDate: api.dateRangeConfig.defaultFDate || "25/09/2026",
+      TDate: api.dateRangeConfig.defaultTDate || "25/09/2026",
+      sc_code: api.dateRangeConfig.defaultScCode || ""
+    };
   }
 
   // Set subTab default
@@ -437,8 +602,10 @@ function renderDetailContent(api) {
   const container = document.getElementById("detail-content-mount");
   if (!container || !api) return;
 
-  const fullUrl = `${api.baseUrl}${api.path}`;
+  const currentPath = getDynamicPath(api);
+  const fullUrl = `${api.baseUrl}${currentPath}`;
   const isMultiSchedule = api.publishTimes && api.publishTimes.length > 1;
+  const isBse = api.exchange === "BSE";
 
   // Update mobile back bar tag
   const mobileTag = document.getElementById("mobile-detail-tag");
@@ -458,13 +625,15 @@ function renderDetailContent(api) {
             <span class="text-[#002855] font-semibold">${api.categoryPath || "MARKET DATA"}</span>
           </div>
           <div class="flex items-center space-x-1.5 flex-shrink-0">
-            <span class="text-[11px] font-bold px-2 py-0.5 rounded bg-[#002855] text-white">
-              ${api.method || "GET"}
+            <span class="text-[11px] font-bold px-2 py-0.5 rounded ${isBse ? "bg-[#003b7a] text-amber-300" : "bg-[#002855] text-white"}">
+              ${api.exchange || "NSE"} &bull; ${api.method || "GET"}
             </span>
             <span class="text-[11px] font-semibold px-2 py-0.5 rounded-full ${
-              api.hasSubTabs ? "bg-blue-50 text-blue-700 border border-blue-200" : "bg-emerald-50 text-emerald-700 border border-emerald-200"
+              api.hasDateRangeFilter
+                ? "bg-blue-50 text-blue-800 border border-blue-200"
+                : api.hasSubTabs ? "bg-blue-50 text-blue-700 border border-blue-200" : "bg-emerald-50 text-emerald-700 border border-emerald-200"
             }">
-              ${api.hasSubTabs ? "3-in-1 Dataset" : "Live Endpoint"}
+              ${api.hasDateRangeFilter ? "Custom Date Range" : api.hasSubTabs ? "3-in-1 Dataset" : "Live Endpoint"}
             </span>
           </div>
         </div>
@@ -481,7 +650,7 @@ function renderDetailContent(api) {
         <div class="bg-amber-50/80 border border-amber-200 rounded-xl p-3.5 mb-4">
           <div class="flex items-center space-x-2 mb-2">
             <span class="text-base">🕒</span>
-            <span class="text-xs font-bold text-amber-900 uppercase tracking-wider">Data Fetch & Publication Windows</span>
+            <span class="text-xs font-bold text-amber-900 uppercase tracking-wider">Data Fetch & Publication Schedule</span>
             <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-200/80 text-amber-900 border border-amber-300">
               ${api.frequencyType}
             </span>
@@ -504,27 +673,120 @@ function renderDetailContent(api) {
           </div>
         </div>
 
+        <!-- INTERACTIVE QUERY BUILDER (FOR BSE DEALS & DATE RANGE APIS) -->
+        ${
+          api.hasDateRangeFilter
+            ? `
+        <div class="bg-gradient-to-r from-blue-50/80 to-indigo-50/80 border border-blue-200 rounded-xl p-4 space-y-3 mb-4 shadow-2xs">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <div class="flex items-center space-x-2">
+              <span class="text-base">📅</span>
+              <span class="text-xs font-bold text-[#002855] uppercase tracking-wider">Date Range & Query Builder</span>
+              <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-blue-100 text-blue-900 border border-blue-300">Default: Last Closing Day</span>
+            </div>
+            <span class="text-[10px] text-gray-500 font-mono-code">DealType: 1=Bulk, 2=Block</span>
+          </div>
+
+          <!-- Quick Presets -->
+          <div class="flex flex-wrap items-center gap-1.5 pt-0.5">
+            <span class="text-[11px] font-bold text-gray-600 mr-1">Quick Presets:</span>
+            <button type="button" onclick="applyDatePreset('closing')" class="px-2.5 py-1 rounded-lg border border-blue-300 bg-white hover:bg-blue-50 text-[#002855] font-bold text-xs transition shadow-2xs">
+              ⚡ Last Closing Day (25/09/2026)
+            </button>
+            <button type="button" onclick="applyDatePreset('2days')" class="px-2.5 py-1 rounded-lg border border-gray-200 bg-white hover:bg-gray-50 text-gray-700 font-medium text-xs transition">
+              Last 2 Days (24–25 Sep)
+            </button>
+            <button type="button" onclick="applyDatePreset('7days')" class="px-2.5 py-1 rounded-lg border border-gray-200 bg-white hover:bg-gray-50 text-gray-700 font-medium text-xs transition">
+              Last 7 Days (19–25 Sep)
+            </button>
+            <button type="button" onclick="applyDatePreset('month')" class="px-2.5 py-1 rounded-lg border border-gray-200 bg-white hover:bg-gray-50 text-gray-700 font-medium text-xs transition">
+              Month-to-Date (01–25 Sep)
+            </button>
+          </div>
+
+          <!-- Form Grid -->
+          <div class="grid grid-cols-1 sm:grid-cols-4 gap-2.5 pt-1">
+            <div>
+              <label class="block text-[10px] font-bold uppercase tracking-wider text-gray-600 mb-1">Deal Type</label>
+              <select id="query-deal-type" onchange="handleParamChange()" 
+                class="w-full bg-white border border-gray-300 rounded-lg px-2.5 py-2 text-xs font-semibold text-gray-800 outline-none focus:border-[#002855]">
+                <option value="1" ${currentQueryParams.DealType === "1" ? "selected" : ""}>1 - Bulk Deals (>= 0.5% Float)</option>
+                <option value="2" ${currentQueryParams.DealType === "2" ? "selected" : ""}>2 - Block Deals (>= ₹10 Crore)</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="block text-[10px] font-bold uppercase tracking-wider text-gray-600 mb-1">From Date (FDate)</label>
+              <input type="text" id="query-fdate" value="${currentQueryParams.FDate}" placeholder="DD/MM/YYYY" oninput="handleParamChange()"
+                class="w-full bg-white border border-gray-300 rounded-lg px-2.5 py-2 text-xs font-mono-code text-gray-800 outline-none focus:border-[#002855]" />
+            </div>
+
+            <div>
+              <label class="block text-[10px] font-bold uppercase tracking-wider text-gray-600 mb-1">To Date (TDate)</label>
+              <input type="text" id="query-tdate" value="${currentQueryParams.TDate}" placeholder="DD/MM/YYYY" oninput="handleParamChange()"
+                class="w-full bg-white border border-gray-300 rounded-lg px-2.5 py-2 text-xs font-mono-code text-gray-800 outline-none focus:border-[#002855]" />
+            </div>
+
+            <div>
+              <label class="block text-[10px] font-bold uppercase tracking-wider text-gray-600 mb-1">Scrip Code / Name Filter</label>
+              <input type="text" id="query-sc-code" value="${currentQueryParams.sc_code}" placeholder="e.g. 539222 or GROWINGTON" oninput="handleParamChange()"
+                class="w-full bg-white border border-gray-300 rounded-lg px-2.5 py-2 text-xs font-mono-code text-gray-800 outline-none focus:border-[#002855]" />
+            </div>
+          </div>
+
+          <!-- Dynamic Active Status -->
+          <div class="flex items-center justify-between text-[11px] text-blue-900 bg-white/80 border border-blue-200 rounded-lg px-3 py-1.5">
+            <span>Range Selected: <b id="active-range-label" class="font-mono-code">${currentQueryParams.FDate} to ${currentQueryParams.TDate}</b></span>
+            <span id="filter-status-label" class="text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
+              ${getActiveRecordCount(api)}
+            </span>
+          </div>
+        </div>
+        `
+            : ""
+        }
+
+        <!-- BSE WAF HEADER NOTICE (Explains HTML 403 vs JSON) -->
+        ${
+          isBse
+            ? `
+        <div class="bg-amber-50/90 border border-amber-200 rounded-xl p-3.5 mb-4 text-xs text-amber-950 space-y-1.5 shadow-2xs">
+          <div class="flex items-center space-x-2 font-bold text-amber-900">
+            <span>💡</span>
+            <span>Why did direct browser GET return HTML Access Denied?</span>
+          </div>
+          <p class="text-[11px] text-amber-900/90 leading-relaxed">
+            <b>BSE Akamai Cloudflare/WAF Protection:</b> When requested directly via browser address bar or plain <code>curl</code> without headers, BSE blocks the request with an HTML <i>403 Access Denied</i> page.
+          </p>
+          <p class="text-[11px] text-amber-900/90 leading-relaxed">
+            <b>The Fix:</b> Pass <code>Origin: https://www.bseindia.com</code> and <code>Referer: https://www.bseindia.com/</code> headers along with a standard User-Agent. In Python, an initial session handshake with the homepage sets cookies to fetch pure JSON. See the ready-to-run snippet below!
+          </p>
+        </div>
+        `
+            : ""
+        }
+
         <!-- ENDPOINT URL BAR -->
         <div class="space-y-2">
           <label class="block text-[11px] font-bold uppercase tracking-wider text-gray-500">
             Official Request URL (HTTP GET)
           </label>
           <div class="flex items-center space-x-2 bg-[#f8fafc] border border-gray-300 rounded-xl p-2.5 font-mono-code text-xs text-gray-800 shadow-inner overflow-hidden">
-            <span class="text-gray-400 select-none hidden sm:inline flex-shrink-0">${api.baseUrl}</span>
-            <span class="text-[#003b7a] font-semibold truncate flex-1">${api.path}</span>
+            <span id="endpoint-url-base" class="text-gray-400 select-none hidden sm:inline flex-shrink-0">${api.baseUrl}</span>
+            <span id="endpoint-url-path" class="text-[#003b7a] font-semibold truncate flex-1">${currentPath}</span>
           </div>
 
           <!-- Action Buttons (Touch-friendly 44px on Mobile) -->
           <div class="grid grid-cols-2 gap-2 pt-1">
-            <button onclick="navigator.clipboard.writeText('${fullUrl}'); window.showToast('Copied full URL to clipboard!');" 
+            <button id="btn-copy-url" onclick="navigator.clipboard.writeText('${fullUrl}'); window.showToast('Copied full URL to clipboard!');" 
               class="h-11 px-4 text-xs font-semibold rounded-xl bg-gray-100 hover:bg-gray-200 active:bg-gray-300 text-gray-800 border border-gray-200 flex items-center justify-center space-x-2 transition">
               <span>📋</span>
               <span>Copy URL</span>
             </button>
-            <a href="${fullUrl}" target="_blank" rel="noopener noreferrer" 
+            <a id="btn-open-exchange" href="${fullUrl}" target="_blank" rel="noopener noreferrer" 
               class="h-11 px-4 text-xs font-bold rounded-xl bg-[#002855] hover:bg-[#001a38] text-white flex items-center justify-center space-x-2 transition shadow-sm">
               <span>↗</span>
-              <span>Open in NSE</span>
+              <span>Open in ${api.exchange || "NSE"}</span>
             </a>
           </div>
         </div>
@@ -534,13 +796,13 @@ function renderDetailContent(api) {
       <!-- JSON VIEWER CARD WITH MULTI-DATASET SUB-TABS -->
       <div class="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm">
         
-        <!-- SUB-TABS SELECTOR (IF MULTI-DATASET API e.g. LARGE DEALS) -->
+        <!-- SUB-TABS SELECTOR (IF MULTI-DATASET API e.g. LARGE DEALS OR BSE) -->
         ${
           api.hasSubTabs && api.subTabs && api.subTabs.length > 0
             ? `
         <div class="border-b border-gray-200 bg-[#f8fafc] p-2.5 sm:p-3">
           <div class="text-[11px] font-bold uppercase tracking-wider text-gray-500 mb-1.5 px-1 flex items-center justify-between">
-            <span>Separate Dataset Views (3 Types of Data)</span>
+            <span>Separate Dataset Views (${api.subTabs.length} Types of Data)</span>
             <span class="text-[10px] font-normal text-gray-400">Tap to inspect each category</span>
           </div>
           <div class="horizontal-scroll space-x-2 pb-0.5">
@@ -654,7 +916,7 @@ function showEmptyDesktopDetail() {
     <div class="bg-white border border-gray-200 rounded-2xl p-12 text-center shadow-xs">
       <div class="text-3xl mb-2">🔍</div>
       <h3 class="text-base font-bold text-gray-800 mb-1">No Endpoints Match Your Search</h3>
-      <p class="text-xs text-gray-500 mb-3">Try searching for keywords like "bulk", "block", "pre open", or "09:08".</p>
+      <p class="text-xs text-gray-500 mb-3">Try searching for keywords like "bse", "bulk", "block", "pre open", or "09:08".</p>
       <button onclick="handleLogoClick()" class="px-4 py-2 text-xs font-semibold rounded-lg bg-[#002855] text-white">
         Reset Search
       </button>
@@ -664,10 +926,24 @@ function showEmptyDesktopDetail() {
 
 function getActiveViewData(api) {
   if (!api) return {};
+  let data = api.sampleResponse || {};
+
   if (api.hasSubTabs && activeSubTabKey && activeSubTabKey !== "RAW_ALL") {
-    return api.sampleResponse?.[activeSubTabKey] || [];
+    data = api.sampleResponse?.[activeSubTabKey] || [];
   }
-  return api.sampleResponse || {};
+
+  // If user entered a scrip code filter and data is an array
+  if (api.hasDateRangeFilter && currentQueryParams.sc_code && Array.isArray(data)) {
+    const codeFilter = String(currentQueryParams.sc_code).trim().toLowerCase();
+    const filtered = data.filter((item) =>
+      String(item.SCRIP_CODE || "").toLowerCase().includes(codeFilter) ||
+      String(item.scripname || "").toLowerCase().includes(codeFilter) ||
+      String(item.CLIENT_NAME || "").toLowerCase().includes(codeFilter)
+    );
+    return filtered.length > 0 ? filtered : data;
+  }
+
+  return data;
 }
 
 function getActiveViewTitle(api) {
@@ -743,14 +1019,43 @@ function copyCurrentActiveJson() {
 
 function updateSnippet(api, type) {
   const box = document.getElementById("snippet-code-box");
-  if (!box) return;
+  if (!box || !api) return;
 
-  const fullUrl = `${api.baseUrl}${api.path}`;
-  const referer = api.headers?.Referer || "https://www.nseindia.com/";
-  const ua = api.headers?.["User-Agent"] || "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/122.0.0.0 Safari/537.36";
+  const currentPath = getDynamicPath(api);
+  const fullUrl = `${api.baseUrl}${currentPath}`;
+  const isBse = api.exchange === "BSE" || api.id === "bse-bulk-deals";
 
   if (type === "python") {
-    box.innerText = `import requests
+    if (isBse) {
+      box.innerText = `import requests
+import json
+
+url = "${fullUrl}"
+headers = {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36",
+    "Accept": "application/json, text/plain, */*",
+    "Origin": "https://www.bseindia.com",
+    "Referer": "https://www.bseindia.com/"
+}
+
+session = requests.Session()
+# 1. Establish session handshake on BSE homepage to receive bot clearance
+session.get("https://www.bseindia.com", headers=headers, timeout=10)
+
+# 2. Fetch Bulk / Block Deals with custom Date Range
+response = session.get(url, headers=headers, timeout=10)
+data = response.json()
+
+# Extract Table array
+deals = data.get("Table", [])
+print(f"Total deals received: {len(deals)}")
+
+for deal in deals[:5]:
+    print(f"{deal.get('scripname')} | {deal.get('CLIENT_NAME')} | Type: {deal.get('TRANSACTION_TYPE')} | Qty: {deal.get('QUANTITY')} | Rs. {deal.get('PRICE')}")`;
+    } else {
+      const referer = api.headers?.Referer || "https://www.nseindia.com/";
+      const ua = api.headers?.["User-Agent"] || "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/122.0.0.0 Safari/537.36";
+      box.innerText = `import requests
 
 url = "${fullUrl}"
 headers = {
@@ -772,11 +1077,23 @@ bulk_deals = data.get("BULK_DEALS_DATA", [])
 block_deals = data.get("BLOCK_DEALS_DATA", [])
 short_selling = data.get("SHORT_DEALS_DATA", [])
 print(f"Bulk: {len(bulk_deals)}, Block: {len(block_deals)}, Short: {len(short_selling)}")` : `print(data)`}`;
+    }
   } else {
-    box.innerText = `curl "${fullUrl}" \\
+    // cURL
+    if (isBse) {
+      box.innerText = `curl "${fullUrl}" \\
+  -H "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36" \\
+  -H "Origin: https://www.bseindia.com" \\
+  -H "Referer: https://www.bseindia.com/" \\
+  -H "Accept: application/json, text/plain, */*"`;
+    } else {
+      const referer = api.headers?.Referer || "https://www.nseindia.com/";
+      const ua = api.headers?.["User-Agent"] || "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/122.0.0.0 Safari/537.36";
+      box.innerText = `curl "${fullUrl}" \\
   -H "User-Agent: ${ua}" \\
   -H "Referer: ${referer}" \\
   -H "Accept: */*"`;
+    }
   }
 }
 

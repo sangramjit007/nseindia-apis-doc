@@ -44,22 +44,27 @@
       
       <!-- Brand Logo & Title -->
       <a href="#" onclick="handleLogoClick(); return false;" class="flex items-center space-x-2 flex-shrink-0 cursor-pointer">
-        <div class="w-8 h-8 rounded-lg bg-white flex items-center justify-center font-black text-[#002855] text-xs sm:text-sm shadow-sm border border-white/20">
-          NSE
+        <div class="flex items-center space-x-1">
+          <div class="w-8 h-8 rounded-lg bg-white flex items-center justify-center font-black text-[#002855] text-xs shadow-sm border border-white/20">
+            NSE
+          </div>
+          <div class="w-8 h-8 rounded-lg bg-[#003b7a] flex items-center justify-center font-black text-amber-300 text-xs shadow-sm border border-white/20">
+            BSE
+          </div>
         </div>
         <div>
           <div class="flex items-center space-x-1">
             <span class="font-extrabold text-sm sm:text-base tracking-tight text-white">API<span class="text-amber-400">DOCS</span></span>
             <span class="text-[9px] uppercase font-bold tracking-wider px-1.5 py-0.5 rounded bg-white/10 text-amber-300 border border-white/20 hidden xs:inline">Official</span>
           </div>
-          <p class="text-[10px] text-white/70 -mt-0.5 hidden sm:block">National Stock Exchange of India</p>
+          <p class="text-[10px] text-white/70 -mt-0.5 hidden sm:block">Indian Stock Exchanges (NSE & BSE)</p>
         </div>
       </a>
 
       <!-- Quick Search -->
       <div class="flex-1 max-w-xs sm:max-w-sm ml-auto">
         <div class="relative w-full">
-          <input type="text" id="global-search" placeholder="Search (e.g. bulk, block, 9:12am)..." 
+          <input type="text" id="global-search" placeholder="Search (e.g. bulk, bse, block, 9:12am)..." 
             class="w-full bg-white/10 border border-white/20 rounded-full pl-3 pr-8 py-1.5 text-xs text-white placeholder-white/60 focus:outline-none focus:bg-white/20 focus:border-amber-400 transition" />
           <button id="clear-search-btn" class="absolute inset-y-0 right-0 pr-2.5 flex items-center text-white/60 hover:text-white hidden text-xs font-bold" title="Clear Search">
             ✕
@@ -156,7 +161,7 @@
   <!-- FOOTER -->
   <footer class="bg-white border-t border-gray-200 py-4 text-center text-xs text-gray-500 mt-auto">
     <div class="max-w-5xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-2">
-      <span class="font-medium text-[#002855]">National Stock Exchange of India (NSE) API Reference</span>
+      <span class="font-medium text-[#002855]">Indian Stock Exchanges (NSE & BSE) Official API Reference</span>
       <span class="text-[11px] text-gray-400">Adaptive Laptop & Mobile Edition &bull; GitHub Pages Ready</span>
     </div>
   </footer>

@@ -2020,6 +2020,1723 @@
           }
         ]
       }
+    },
+    {
+      "id": "bse-bulk-deals",
+      "name": "BSE Bulk & Block Deals",
+      "shortName": "BSE Deals",
+      "exchange": "BSE",
+      "categoryPath": "BSE MARKET DATA > Bulk & Block Deals",
+      "category": "BSE Deals",
+      "segment": "Equity",
+      "path": "/BseIndiaAPI/api/BulkDealData_ng/w?DealType=1&sc_code=&FDate=25/09/2026&TDate=25/09/2026",
+      "baseUrl": "https://api.bseindia.com",
+      "method": "GET",
+      "frequencyType": "End of Day (EOD) & Historical",
+      "fetchTime": "After Market Close (EOD)",
+      "publishTimes": [
+        {
+          "window": "EOD Publication Window",
+          "time": "After 4:30 PM",
+          "description": "Consolidated end-of-day bulk and block deals reported by market brokers across trading sessions."
+        }
+      ],
+      "description": "Official Bombay Stock Exchange (BSE) API for Bulk Deals (DealType=1) and Block Deals (DealType=2). Defaults to the latest closing trading day with interactive custom date range and scrip code query builder.",
+      "hasDateRangeFilter": true,
+      "dateRangeConfig": {
+        "defaultDealType": "1",
+        "defaultFDate": "25/09/2026",
+        "defaultTDate": "25/09/2026",
+        "defaultScCode": "",
+        "endpointTemplate": "/BseIndiaAPI/api/BulkDealData_ng/w?DealType={DealType}&sc_code={sc_code}&FDate={FDate}&TDate={TDate}"
+      },
+      "hasSubTabs": true,
+      "subTabs": [
+        {
+          "key": "BULK_DEALS",
+          "label": "Bulk Deals (Type 1)",
+          "badge": ">= 0.5% Float",
+          "description": "BSE Bulk Deals: Transactions where total quantity bought or sold exceeds 0.5% of total listed equity capital."
+        },
+        {
+          "key": "BLOCK_DEALS",
+          "label": "Block Deals (Type 2)",
+          "badge": ">= \u20b910 Crore",
+          "description": "BSE Block Deals: Large institutional single-transaction blocks crossing minimum \u20b910 Crore threshold."
+        },
+        {
+          "key": "Table",
+          "label": "Raw BSE Format",
+          "badge": "Table Array",
+          "description": "Original raw 'Table' array structure directly returned by the BSE endpoint."
+        }
+      ],
+      "parameters": [
+        {
+          "name": "DealType",
+          "type": "integer",
+          "default": "1",
+          "description": "1 = Bulk Deals (>= 0.5% Float), 2 = Block Deals (>= 10 Crore)"
+        },
+        {
+          "name": "FDate",
+          "type": "string",
+          "default": "25/09/2026",
+          "format": "DD/MM/YYYY",
+          "description": "From Date in DD/MM/YYYY format"
+        },
+        {
+          "name": "TDate",
+          "type": "string",
+          "default": "25/09/2026",
+          "format": "DD/MM/YYYY",
+          "description": "To Date in DD/MM/YYYY format"
+        },
+        {
+          "name": "sc_code",
+          "type": "string",
+          "default": "",
+          "description": "Optional 6-digit BSE security/scrip code (e.g. 539222)"
+        }
+      ],
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36",
+        "Origin": "https://www.bseindia.com",
+        "Referer": "https://www.bseindia.com/",
+        "Accept": "application/json, text/plain, */*"
+      },
+      "sampleResponse": {
+        "as_on_date": "25/09/2026",
+        "DealType": 1,
+        "FDate": "25/09/2026",
+        "TDate": "25/09/2026",
+        "BULK_DEALS": [
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 539222,
+            "scripname": "GROWINGTON",
+            "CLIENT_NAME": "NIRMALKUMAR RAMESHCHANDRA PATEL",
+            "TRANSACTION_TYPE": "P",
+            "QUANTITY": 11299952.0,
+            "PRICE": 0.89
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 526935,
+            "scripname": "KALIND",
+            "CLIENT_NAME": "ASTRON DEVELOPERS PRIVATE LIMITED",
+            "TRANSACTION_TYPE": "P",
+            "QUANTITY": 9000000.0,
+            "PRICE": 4.48
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 526935,
+            "scripname": "KALIND",
+            "CLIENT_NAME": "SATANI CHHAGANBHAI RATILALBHAI",
+            "TRANSACTION_TYPE": "S",
+            "QUANTITY": 7835050.0,
+            "PRICE": 4.48
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 526935,
+            "scripname": "KALIND",
+            "CLIENT_NAME": "ABHISHEK ASHVINBHAI KAMDAR HUF",
+            "TRANSACTION_TYPE": "S",
+            "QUANTITY": 4990000.0,
+            "PRICE": 4.48
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 511116,
+            "scripname": "QUADRANT",
+            "CLIENT_NAME": "FINDOC INVESTMART PVT LTD",
+            "TRANSACTION_TYPE": "P",
+            "QUANTITY": 4000000.0,
+            "PRICE": 0.88
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 512093,
+            "scripname": "CRANESSOFT",
+            "CLIENT_NAME": "JAYPEE CAPITAL SERVICE LTD",
+            "TRANSACTION_TYPE": "P",
+            "QUANTITY": 2883360.0,
+            "PRICE": 6.82
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 512093,
+            "scripname": "CRANESSOFT",
+            "CLIENT_NAME": "TECHUNI VENTURES PRIVATE LIMITED",
+            "TRANSACTION_TYPE": "S",
+            "QUANTITY": 2500000.0,
+            "PRICE": 6.82
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 531411,
+            "scripname": "TUNITEX",
+            "CLIENT_NAME": "JAGID VANITABEN RAJENDRAPRASAD",
+            "TRANSACTION_TYPE": "S",
+            "QUANTITY": 2155035.0,
+            "PRICE": 1.82
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 514386,
+            "scripname": "GUJCOTEX",
+            "CLIENT_NAME": "JAGID VANITABEN RAJENDRAPRASAD",
+            "TRANSACTION_TYPE": "S",
+            "QUANTITY": 1926154.0,
+            "PRICE": 2.44
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 501425,
+            "scripname": "BBTC",
+            "CLIENT_NAME": "NOWROSJEE WADIA AND SONS LTD",
+            "TRANSACTION_TYPE": "P",
+            "QUANTITY": 1610000.0,
+            "PRICE": 1400.0
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 501425,
+            "scripname": "BBTC",
+            "CLIENT_NAME": "WADIA NUSLI NEVILLE",
+            "TRANSACTION_TYPE": "S",
+            "QUANTITY": 1610000.0,
+            "PRICE": 1400.0
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 512169,
+            "scripname": "CAPRICORN",
+            "CLIENT_NAME": "SUSHMA JAKKU",
+            "TRANSACTION_TYPE": "S",
+            "QUANTITY": 1600000.0,
+            "PRICE": 32.0
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 531411,
+            "scripname": "TUNITEX",
+            "CLIENT_NAME": "JAGID VANITABEN RAJENDRAPRASAD",
+            "TRANSACTION_TYPE": "P",
+            "QUANTITY": 1500000.0,
+            "PRICE": 1.82
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 539679,
+            "scripname": "KAPILRAJ",
+            "CLIENT_NAME": "MULTIPLIER SHARE & STOCK ADVISORS PRIVATE LIMITED",
+            "TRANSACTION_TYPE": "S",
+            "QUANTITY": 1261963.0,
+            "PRICE": 3.41
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 512169,
+            "scripname": "CAPRICORN",
+            "CLIENT_NAME": "MURALIDHAR VELLANKI",
+            "TRANSACTION_TYPE": "P",
+            "QUANTITY": 1039000.0,
+            "PRICE": 32.0
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 539679,
+            "scripname": "KAPILRAJ",
+            "CLIENT_NAME": "RUPAL  GUPTA",
+            "TRANSACTION_TYPE": "P",
+            "QUANTITY": 1000000.0,
+            "PRICE": 3.1
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 539679,
+            "scripname": "KAPILRAJ",
+            "CLIENT_NAME": "POCKETFUL RESEARCH CAPITAL PRIVATE LIMITED",
+            "TRANSACTION_TYPE": "P",
+            "QUANTITY": 800000.0,
+            "PRICE": 3.41
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 544934,
+            "scripname": "SSRETAIL",
+            "CLIENT_NAME": "IRAGE BROKING SERVICES LLP",
+            "TRANSACTION_TYPE": "S",
+            "QUANTITY": 774556.0,
+            "PRICE": 793.91
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 531411,
+            "scripname": "TUNITEX",
+            "CLIENT_NAME": "SHARE INDIA SECURITIES LIMITED",
+            "TRANSACTION_TYPE": "P",
+            "QUANTITY": 750000.0,
+            "PRICE": 1.82
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 531411,
+            "scripname": "TUNITEX",
+            "CLIENT_NAME": "SHARE INDIA SECURITIES LIMITED",
+            "TRANSACTION_TYPE": "S",
+            "QUANTITY": 649432.0,
+            "PRICE": 1.82
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 514386,
+            "scripname": "GUJCOTEX",
+            "CLIENT_NAME": "JAGID VANITABEN RAJENDRAPRASAD",
+            "TRANSACTION_TYPE": "P",
+            "QUANTITY": 624981.0,
+            "PRICE": 2.64
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 539679,
+            "scripname": "KAPILRAJ",
+            "CLIENT_NAME": "NEO APEX SHARE BROKING SERVICES LLP",
+            "TRANSACTION_TYPE": "P",
+            "QUANTITY": 600000.0,
+            "PRICE": 3.22
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 544934,
+            "scripname": "SSRETAIL",
+            "CLIENT_NAME": "IRAGE BROKING SERVICES LLP",
+            "TRANSACTION_TYPE": "P",
+            "QUANTITY": 582699.0,
+            "PRICE": 774.26
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 543520,
+            "scripname": "GLHRL",
+            "CLIENT_NAME": "ABHISHEK ASHVINBHAI KAMDAR HUF",
+            "TRANSACTION_TYPE": "P",
+            "QUANTITY": 538000.0,
+            "PRICE": 14.78
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 514360,
+            "scripname": "KRRAIL",
+            "CLIENT_NAME": "SYED MOHD MAWAHEDUDDIN",
+            "TRANSACTION_TYPE": "P",
+            "QUANTITY": 524831.0,
+            "PRICE": 19.08
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 544934,
+            "scripname": "SSRETAIL",
+            "CLIENT_NAME": "GRAVITON RESEARCH CAPITAL LLP",
+            "TRANSACTION_TYPE": "S",
+            "QUANTITY": 509078.0,
+            "PRICE": 802.69
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 544934,
+            "scripname": "SSRETAIL",
+            "CLIENT_NAME": "GRAVITON RESEARCH CAPITAL LLP",
+            "TRANSACTION_TYPE": "P",
+            "QUANTITY": 509078.0,
+            "PRICE": 802.73
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 514386,
+            "scripname": "GUJCOTEX",
+            "CLIENT_NAME": "RATHOD DIGVIJAYSINH RAJENDRASINH",
+            "TRANSACTION_TYPE": "P",
+            "QUANTITY": 500000.0,
+            "PRICE": 2.51
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 514386,
+            "scripname": "GUJCOTEX",
+            "CLIENT_NAME": "RATHOD DIGVIJAYSINH RAJENDRASINH",
+            "TRANSACTION_TYPE": "S",
+            "QUANTITY": 500000.0,
+            "PRICE": 2.41
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 539679,
+            "scripname": "KAPILRAJ",
+            "CLIENT_NAME": "MULTIPLIER SHARE & STOCK ADVISORS PRIVATE LIMITED",
+            "TRANSACTION_TYPE": "P",
+            "QUANTITY": 500000.0,
+            "PRICE": 3.41
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 538647,
+            "scripname": "PURSHOTTAM",
+            "CLIENT_NAME": "PRANIDHI VENTURES PRIVATE LIMITED",
+            "TRANSACTION_TYPE": "P",
+            "QUANTITY": 494766.0,
+            "PRICE": 34.38
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 514386,
+            "scripname": "GUJCOTEX",
+            "CLIENT_NAME": "DATANIYA PIYUSH MANOJBHAI",
+            "TRANSACTION_TYPE": "P",
+            "QUANTITY": 480500.0,
+            "PRICE": 2.41
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 544934,
+            "scripname": "SSRETAIL",
+            "CLIENT_NAME": "NK SECURITIES RESEARCH PVT. LTD.",
+            "TRANSACTION_TYPE": "P",
+            "QUANTITY": 439593.0,
+            "PRICE": 788.2
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 544934,
+            "scripname": "SSRETAIL",
+            "CLIENT_NAME": "NK SECURITIES RESEARCH PVT. LTD.",
+            "TRANSACTION_TYPE": "S",
+            "QUANTITY": 439593.0,
+            "PRICE": 788.8
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 539679,
+            "scripname": "KAPILRAJ",
+            "CLIENT_NAME": "NEO APEX SHARE BROKING SERVICES LLP",
+            "TRANSACTION_TYPE": "S",
+            "QUANTITY": 418958.0,
+            "PRICE": 3.41
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 538647,
+            "scripname": "PURSHOTTAM",
+            "CLIENT_NAME": "SUCCESS MERCHANTS PRIVATE LIMITED",
+            "TRANSACTION_TYPE": "S",
+            "QUANTITY": 378000.0,
+            "PRICE": 34.5
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 516110,
+            "scripname": "FAMILYCARE",
+            "CLIENT_NAME": "SOWMYA GAUTAM DESHPANDE",
+            "TRANSACTION_TYPE": "S",
+            "QUANTITY": 348641.0,
+            "PRICE": 1.81
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 512169,
+            "scripname": "CAPRICORN",
+            "CLIENT_NAME": "MULTIPLIER SHARE & STOCK ADVISORS PRIVATE LIMITED",
+            "TRANSACTION_TYPE": "P",
+            "QUANTITY": 310000.0,
+            "PRICE": 32.0
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 526935,
+            "scripname": "KALIND",
+            "CLIENT_NAME": "SATANI CHHAGANBHAI RATILALBHAI",
+            "TRANSACTION_TYPE": "P",
+            "QUANTITY": 300000.0,
+            "PRICE": 4.44
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 544468,
+            "scripname": "BDI",
+            "CLIENT_NAME": "ARYAMAN BROKING LIMITED",
+            "TRANSACTION_TYPE": "P",
+            "QUANTITY": 265200.0,
+            "PRICE": 114.36
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 544468,
+            "scripname": "BDI",
+            "CLIENT_NAME": "SANJAY NARENDRA BANSAL",
+            "TRANSACTION_TYPE": "S",
+            "QUANTITY": 258000.0,
+            "PRICE": 114.35
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 543520,
+            "scripname": "GLHRL",
+            "CLIENT_NAME": "DIPEN MUKESHBHAI BAROT",
+            "TRANSACTION_TYPE": "S",
+            "QUANTITY": 250000.0,
+            "PRICE": 14.81
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 512169,
+            "scripname": "CAPRICORN",
+            "CLIENT_NAME": "NANDKISHORE PARTANI",
+            "TRANSACTION_TYPE": "P",
+            "QUANTITY": 250000.0,
+            "PRICE": 32.0
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 512169,
+            "scripname": "CAPRICORN",
+            "CLIENT_NAME": "DINESH PARTHANI (HUF)",
+            "TRANSACTION_TYPE": "P",
+            "QUANTITY": 250000.0,
+            "PRICE": 32.0
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 526935,
+            "scripname": "KALIND",
+            "CLIENT_NAME": "ABHISHEK ASHVINBHAI KAMDAR HUF",
+            "TRANSACTION_TYPE": "P",
+            "QUANTITY": 240000.0,
+            "PRICE": 4.48
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 512093,
+            "scripname": "CRANESSOFT",
+            "CLIENT_NAME": "JAYPEE CAPITAL SERVICE LTD",
+            "TRANSACTION_TYPE": "S",
+            "QUANTITY": 221689.0,
+            "PRICE": 7.08
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 531144,
+            "scripname": "ELFORGE",
+            "CLIENT_NAME": "MAHENDRA GIRDHARILAL WADHWANI",
+            "TRANSACTION_TYPE": "P",
+            "QUANTITY": 212359.0,
+            "PRICE": 23.73
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 543520,
+            "scripname": "GLHRL",
+            "CLIENT_NAME": "ATRICHHAYA FINANCIAL PRIVATE LIMITED",
+            "TRANSACTION_TYPE": "S",
+            "QUANTITY": 211000.0,
+            "PRICE": 14.71
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 539760,
+            "scripname": "RELICAB",
+            "CLIENT_NAME": "ARYAMAN BROKING LIMITED",
+            "TRANSACTION_TYPE": "P",
+            "QUANTITY": 203700.0,
+            "PRICE": 35.0
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 514360,
+            "scripname": "KRRAIL",
+            "CLIENT_NAME": "PRATIK MADHUKAR SHETH",
+            "TRANSACTION_TYPE": "S",
+            "QUANTITY": 200000.0,
+            "PRICE": 19.11
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 514360,
+            "scripname": "KRRAIL",
+            "CLIENT_NAME": "PAYAL CHHABRA",
+            "TRANSACTION_TYPE": "S",
+            "QUANTITY": 200000.0,
+            "PRICE": 19.0
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 540132,
+            "scripname": "SIIL",
+            "CLIENT_NAME": "VIVEK  RAHEJA",
+            "TRANSACTION_TYPE": "S",
+            "QUANTITY": 200000.0,
+            "PRICE": 15.77
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 544768,
+            "scripname": "MANIVENI",
+            "CLIENT_NAME": "LONGTHRIVE CAPITAL VCC - TRENDVIEW CAPITAL FUND",
+            "TRANSACTION_TYPE": "S",
+            "QUANTITY": 176000.0,
+            "PRICE": 26.0
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 544552,
+            "scripname": "RDGAIL",
+            "CLIENT_NAME": "MAYURI SHRIPAL VORA",
+            "TRANSACTION_TYPE": "S",
+            "QUANTITY": 172800.0,
+            "PRICE": 139.38
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 512169,
+            "scripname": "CAPRICORN",
+            "CLIENT_NAME": "GREEN PEAKS ENTERPRISES LLP",
+            "TRANSACTION_TYPE": "S",
+            "QUANTITY": 152000.0,
+            "PRICE": 31.46
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 544506,
+            "scripname": "SHARVAYA",
+            "CLIENT_NAME": "VIJAY JAYANTILAL SANGHAVI",
+            "TRANSACTION_TYPE": "S",
+            "QUANTITY": 125400.0,
+            "PRICE": 140.45
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 544735,
+            "scripname": "NOVUS",
+            "CLIENT_NAME": "DAVINDER SINGH",
+            "TRANSACTION_TYPE": "S",
+            "QUANTITY": 124000.0,
+            "PRICE": 220.18
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 506122,
+            "scripname": "VOLKAI",
+            "CLIENT_NAME": "TATIA FINAANCIAL SERVICES LTD",
+            "TRANSACTION_TYPE": "P",
+            "QUANTITY": 122300.0,
+            "PRICE": 15.5
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 544710,
+            "scripname": "ACCORDTS",
+            "CLIENT_NAME": "SHINE STAR BUILD CAP PVT LTD",
+            "TRANSACTION_TYPE": "S",
+            "QUANTITY": 120000.0,
+            "PRICE": 82.94
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 544552,
+            "scripname": "RDGAIL",
+            "CLIENT_NAME": "PARITOSH RAMNIKLAL SHAH",
+            "TRANSACTION_TYPE": "P",
+            "QUANTITY": 117600.0,
+            "PRICE": 140.0
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 538647,
+            "scripname": "PURSHOTTAM",
+            "CLIENT_NAME": "PRIME CAPITAL MARKET LIMITED",
+            "TRANSACTION_TYPE": "S",
+            "QUANTITY": 117000.0,
+            "PRICE": 34.0
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 539760,
+            "scripname": "RELICAB",
+            "CLIENT_NAME": "SANJAY NARENDRA BANSAL",
+            "TRANSACTION_TYPE": "S",
+            "QUANTITY": 114840.0,
+            "PRICE": 35.0
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 512169,
+            "scripname": "CAPRICORN",
+            "CLIENT_NAME": "GREEN PEAKS ENTERPRISES LLP",
+            "TRANSACTION_TYPE": "P",
+            "QUANTITY": 105000.0,
+            "PRICE": 32.0
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 506122,
+            "scripname": "VOLKAI",
+            "CLIENT_NAME": "KREON FINNANCIAL SERVICES LIMITED",
+            "TRANSACTION_TYPE": "S",
+            "QUANTITY": 101353.0,
+            "PRICE": 16.79
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 544876,
+            "scripname": "ENS",
+            "CLIENT_NAME": "ACME CAPITAL MARKET LIMITED",
+            "TRANSACTION_TYPE": "S",
+            "QUANTITY": 90000.0,
+            "PRICE": 102.36
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 544876,
+            "scripname": "ENS",
+            "CLIENT_NAME": "VIKASA INDIA EIF I FUND - SHARE CLASS N",
+            "TRANSACTION_TYPE": "P",
+            "QUANTITY": 82800.0,
+            "PRICE": 102.42
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 543400,
+            "scripname": "OMNIPOTENT",
+            "CLIENT_NAME": "AMIT JUGRAJ JAIN",
+            "TRANSACTION_TYPE": "P",
+            "QUANTITY": 82000.0,
+            "PRICE": 2.8
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 543400,
+            "scripname": "OMNIPOTENT",
+            "CLIENT_NAME": "GANDHARV  SINGH",
+            "TRANSACTION_TYPE": "S",
+            "QUANTITY": 80000.0,
+            "PRICE": 2.8
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 539190,
+            "scripname": "DFL",
+            "CLIENT_NAME": "VIRENDRA KUMAR GOYAL",
+            "TRANSACTION_TYPE": "S",
+            "QUANTITY": 74500.0,
+            "PRICE": 39.18
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 539190,
+            "scripname": "DFL",
+            "CLIENT_NAME": "ASSATRA CAPITAL VENTURES PRIVATE LIMITED",
+            "TRANSACTION_TYPE": "P",
+            "QUANTITY": 71904.0,
+            "PRICE": 39.18
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 512443,
+            "scripname": "GANONPRO",
+            "CLIENT_NAME": "PRASIDDHI JIJABRAO PATIL",
+            "TRANSACTION_TYPE": "P",
+            "QUANTITY": 70000.0,
+            "PRICE": 7.05
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 512589,
+            "scripname": "SITAENT",
+            "CLIENT_NAME": "SANJU ASHOK TULSYAN",
+            "TRANSACTION_TYPE": "S",
+            "QUANTITY": 63900.0,
+            "PRICE": 115.07
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 540132,
+            "scripname": "SIIL",
+            "CLIENT_NAME": "GREEN PEAKS ENTERPRISES LLP",
+            "TRANSACTION_TYPE": "P",
+            "QUANTITY": 60052.0,
+            "PRICE": 15.32
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 512443,
+            "scripname": "GANONPRO",
+            "CLIENT_NAME": "DHAN CREATORS AND INVESTMENTS",
+            "TRANSACTION_TYPE": "S",
+            "QUANTITY": 50000.0,
+            "PRICE": 7.05
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 544662,
+            "scripname": "SIMANDHAR",
+            "CLIENT_NAME": "HITESH ZAVERCHAND MAKWANA",
+            "TRANSACTION_TYPE": "P",
+            "QUANTITY": 50000.0,
+            "PRICE": 147.99
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 544662,
+            "scripname": "SIMANDHAR",
+            "CLIENT_NAME": "JIGNA NILESH SHETH",
+            "TRANSACTION_TYPE": "S",
+            "QUANTITY": 49638.0,
+            "PRICE": 148.0
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 526494,
+            "scripname": "PROMACT",
+            "CLIENT_NAME": "SHAH DIPAK KANAYALAL",
+            "TRANSACTION_TYPE": "P",
+            "QUANTITY": 48394.0,
+            "PRICE": 16.49
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 544779,
+            "scripname": "UHMVL",
+            "CLIENT_NAME": "KARTHIK  UPPALA",
+            "TRANSACTION_TYPE": "P",
+            "QUANTITY": 45600.0,
+            "PRICE": 35.04
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 531553,
+            "scripname": "DRL",
+            "CLIENT_NAME": "DEEP  AGARWAL",
+            "TRANSACTION_TYPE": "S",
+            "QUANTITY": 40000.0,
+            "PRICE": 35.45
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 526494,
+            "scripname": "PROMACT",
+            "CLIENT_NAME": "JAISON GEORGE",
+            "TRANSACTION_TYPE": "S",
+            "QUANTITY": 34995.0,
+            "PRICE": 17.9
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 539814,
+            "scripname": "LELAVOIR",
+            "CLIENT_NAME": "DEEPAK GUPTA",
+            "TRANSACTION_TYPE": "P",
+            "QUANTITY": 21293.0,
+            "PRICE": 85.64
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 539814,
+            "scripname": "LELAVOIR",
+            "CLIENT_NAME": "DILIP KESHRIMAL SANKLECHA",
+            "TRANSACTION_TYPE": "S",
+            "QUANTITY": 20926.0,
+            "PRICE": 85.4
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 539408,
+            "scripname": "KUBERJI",
+            "CLIENT_NAME": "VAISHALI SOPAN ADHAV",
+            "TRANSACTION_TYPE": "S",
+            "QUANTITY": 17449.0,
+            "PRICE": 54.58
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 544876,
+            "scripname": "ENS",
+            "CLIENT_NAME": "ACME CAPITAL MARKET LIMITED",
+            "TRANSACTION_TYPE": "P",
+            "QUANTITY": 16800.0,
+            "PRICE": 101.3
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 512443,
+            "scripname": "GANONPRO",
+            "CLIENT_NAME": "DHAN CREATORS AND INVESTMENTS",
+            "TRANSACTION_TYPE": "P",
+            "QUANTITY": 11130.0,
+            "PRICE": 7.24
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 543400,
+            "scripname": "OMNIPOTENT",
+            "CLIENT_NAME": "AMIT JUGRAJ JAIN",
+            "TRANSACTION_TYPE": "S",
+            "QUANTITY": 6000.0,
+            "PRICE": 2.6
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 506122,
+            "scripname": "VOLKAI",
+            "CLIENT_NAME": "KREON FINNANCIAL SERVICES LIMITED",
+            "TRANSACTION_TYPE": "P",
+            "QUANTITY": 5700.0,
+            "PRICE": 16.1
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 544468,
+            "scripname": "BDI",
+            "CLIENT_NAME": "ARYAMAN BROKING LIMITED",
+            "TRANSACTION_TYPE": "S",
+            "QUANTITY": 3600.0,
+            "PRICE": 116.67
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 506122,
+            "scripname": "VOLKAI",
+            "CLIENT_NAME": "TATIA FINAANCIAL SERVICES LTD",
+            "TRANSACTION_TYPE": "S",
+            "QUANTITY": 18.0,
+            "PRICE": 16.95
+          }
+        ],
+        "BLOCK_DEALS": [
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 501425,
+            "scripname": "BBTC",
+            "CLIENT_NAME": "NOWROSJEE WADIA AND SONS LTD",
+            "TRANSACTION_TYPE": "P",
+            "QUANTITY": 1610000.0,
+            "PRICE": 1400.0
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 501425,
+            "scripname": "BBTC",
+            "CLIENT_NAME": "WADIA NUSLI NEVILLE",
+            "TRANSACTION_TYPE": "S",
+            "QUANTITY": 1610000.0,
+            "PRICE": 1400.0
+          }
+        ],
+        "Table": [
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 539222,
+            "scripname": "GROWINGTON",
+            "CLIENT_NAME": "NIRMALKUMAR RAMESHCHANDRA PATEL",
+            "TRANSACTION_TYPE": "P",
+            "QUANTITY": 11299952.0,
+            "PRICE": 0.89
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 526935,
+            "scripname": "KALIND",
+            "CLIENT_NAME": "ASTRON DEVELOPERS PRIVATE LIMITED",
+            "TRANSACTION_TYPE": "P",
+            "QUANTITY": 9000000.0,
+            "PRICE": 4.48
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 526935,
+            "scripname": "KALIND",
+            "CLIENT_NAME": "SATANI CHHAGANBHAI RATILALBHAI",
+            "TRANSACTION_TYPE": "S",
+            "QUANTITY": 7835050.0,
+            "PRICE": 4.48
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 526935,
+            "scripname": "KALIND",
+            "CLIENT_NAME": "ABHISHEK ASHVINBHAI KAMDAR HUF",
+            "TRANSACTION_TYPE": "S",
+            "QUANTITY": 4990000.0,
+            "PRICE": 4.48
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 511116,
+            "scripname": "QUADRANT",
+            "CLIENT_NAME": "FINDOC INVESTMART PVT LTD",
+            "TRANSACTION_TYPE": "P",
+            "QUANTITY": 4000000.0,
+            "PRICE": 0.88
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 512093,
+            "scripname": "CRANESSOFT",
+            "CLIENT_NAME": "JAYPEE CAPITAL SERVICE LTD",
+            "TRANSACTION_TYPE": "P",
+            "QUANTITY": 2883360.0,
+            "PRICE": 6.82
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 512093,
+            "scripname": "CRANESSOFT",
+            "CLIENT_NAME": "TECHUNI VENTURES PRIVATE LIMITED",
+            "TRANSACTION_TYPE": "S",
+            "QUANTITY": 2500000.0,
+            "PRICE": 6.82
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 531411,
+            "scripname": "TUNITEX",
+            "CLIENT_NAME": "JAGID VANITABEN RAJENDRAPRASAD",
+            "TRANSACTION_TYPE": "S",
+            "QUANTITY": 2155035.0,
+            "PRICE": 1.82
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 514386,
+            "scripname": "GUJCOTEX",
+            "CLIENT_NAME": "JAGID VANITABEN RAJENDRAPRASAD",
+            "TRANSACTION_TYPE": "S",
+            "QUANTITY": 1926154.0,
+            "PRICE": 2.44
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 501425,
+            "scripname": "BBTC",
+            "CLIENT_NAME": "NOWROSJEE WADIA AND SONS LTD",
+            "TRANSACTION_TYPE": "P",
+            "QUANTITY": 1610000.0,
+            "PRICE": 1400.0
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 501425,
+            "scripname": "BBTC",
+            "CLIENT_NAME": "WADIA NUSLI NEVILLE",
+            "TRANSACTION_TYPE": "S",
+            "QUANTITY": 1610000.0,
+            "PRICE": 1400.0
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 512169,
+            "scripname": "CAPRICORN",
+            "CLIENT_NAME": "SUSHMA JAKKU",
+            "TRANSACTION_TYPE": "S",
+            "QUANTITY": 1600000.0,
+            "PRICE": 32.0
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 531411,
+            "scripname": "TUNITEX",
+            "CLIENT_NAME": "JAGID VANITABEN RAJENDRAPRASAD",
+            "TRANSACTION_TYPE": "P",
+            "QUANTITY": 1500000.0,
+            "PRICE": 1.82
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 539679,
+            "scripname": "KAPILRAJ",
+            "CLIENT_NAME": "MULTIPLIER SHARE & STOCK ADVISORS PRIVATE LIMITED",
+            "TRANSACTION_TYPE": "S",
+            "QUANTITY": 1261963.0,
+            "PRICE": 3.41
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 512169,
+            "scripname": "CAPRICORN",
+            "CLIENT_NAME": "MURALIDHAR VELLANKI",
+            "TRANSACTION_TYPE": "P",
+            "QUANTITY": 1039000.0,
+            "PRICE": 32.0
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 539679,
+            "scripname": "KAPILRAJ",
+            "CLIENT_NAME": "RUPAL  GUPTA",
+            "TRANSACTION_TYPE": "P",
+            "QUANTITY": 1000000.0,
+            "PRICE": 3.1
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 539679,
+            "scripname": "KAPILRAJ",
+            "CLIENT_NAME": "POCKETFUL RESEARCH CAPITAL PRIVATE LIMITED",
+            "TRANSACTION_TYPE": "P",
+            "QUANTITY": 800000.0,
+            "PRICE": 3.41
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 544934,
+            "scripname": "SSRETAIL",
+            "CLIENT_NAME": "IRAGE BROKING SERVICES LLP",
+            "TRANSACTION_TYPE": "S",
+            "QUANTITY": 774556.0,
+            "PRICE": 793.91
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 531411,
+            "scripname": "TUNITEX",
+            "CLIENT_NAME": "SHARE INDIA SECURITIES LIMITED",
+            "TRANSACTION_TYPE": "P",
+            "QUANTITY": 750000.0,
+            "PRICE": 1.82
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 531411,
+            "scripname": "TUNITEX",
+            "CLIENT_NAME": "SHARE INDIA SECURITIES LIMITED",
+            "TRANSACTION_TYPE": "S",
+            "QUANTITY": 649432.0,
+            "PRICE": 1.82
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 514386,
+            "scripname": "GUJCOTEX",
+            "CLIENT_NAME": "JAGID VANITABEN RAJENDRAPRASAD",
+            "TRANSACTION_TYPE": "P",
+            "QUANTITY": 624981.0,
+            "PRICE": 2.64
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 539679,
+            "scripname": "KAPILRAJ",
+            "CLIENT_NAME": "NEO APEX SHARE BROKING SERVICES LLP",
+            "TRANSACTION_TYPE": "P",
+            "QUANTITY": 600000.0,
+            "PRICE": 3.22
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 544934,
+            "scripname": "SSRETAIL",
+            "CLIENT_NAME": "IRAGE BROKING SERVICES LLP",
+            "TRANSACTION_TYPE": "P",
+            "QUANTITY": 582699.0,
+            "PRICE": 774.26
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 543520,
+            "scripname": "GLHRL",
+            "CLIENT_NAME": "ABHISHEK ASHVINBHAI KAMDAR HUF",
+            "TRANSACTION_TYPE": "P",
+            "QUANTITY": 538000.0,
+            "PRICE": 14.78
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 514360,
+            "scripname": "KRRAIL",
+            "CLIENT_NAME": "SYED MOHD MAWAHEDUDDIN",
+            "TRANSACTION_TYPE": "P",
+            "QUANTITY": 524831.0,
+            "PRICE": 19.08
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 544934,
+            "scripname": "SSRETAIL",
+            "CLIENT_NAME": "GRAVITON RESEARCH CAPITAL LLP",
+            "TRANSACTION_TYPE": "S",
+            "QUANTITY": 509078.0,
+            "PRICE": 802.69
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 544934,
+            "scripname": "SSRETAIL",
+            "CLIENT_NAME": "GRAVITON RESEARCH CAPITAL LLP",
+            "TRANSACTION_TYPE": "P",
+            "QUANTITY": 509078.0,
+            "PRICE": 802.73
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 514386,
+            "scripname": "GUJCOTEX",
+            "CLIENT_NAME": "RATHOD DIGVIJAYSINH RAJENDRASINH",
+            "TRANSACTION_TYPE": "P",
+            "QUANTITY": 500000.0,
+            "PRICE": 2.51
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 514386,
+            "scripname": "GUJCOTEX",
+            "CLIENT_NAME": "RATHOD DIGVIJAYSINH RAJENDRASINH",
+            "TRANSACTION_TYPE": "S",
+            "QUANTITY": 500000.0,
+            "PRICE": 2.41
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 539679,
+            "scripname": "KAPILRAJ",
+            "CLIENT_NAME": "MULTIPLIER SHARE & STOCK ADVISORS PRIVATE LIMITED",
+            "TRANSACTION_TYPE": "P",
+            "QUANTITY": 500000.0,
+            "PRICE": 3.41
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 538647,
+            "scripname": "PURSHOTTAM",
+            "CLIENT_NAME": "PRANIDHI VENTURES PRIVATE LIMITED",
+            "TRANSACTION_TYPE": "P",
+            "QUANTITY": 494766.0,
+            "PRICE": 34.38
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 514386,
+            "scripname": "GUJCOTEX",
+            "CLIENT_NAME": "DATANIYA PIYUSH MANOJBHAI",
+            "TRANSACTION_TYPE": "P",
+            "QUANTITY": 480500.0,
+            "PRICE": 2.41
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 544934,
+            "scripname": "SSRETAIL",
+            "CLIENT_NAME": "NK SECURITIES RESEARCH PVT. LTD.",
+            "TRANSACTION_TYPE": "P",
+            "QUANTITY": 439593.0,
+            "PRICE": 788.2
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 544934,
+            "scripname": "SSRETAIL",
+            "CLIENT_NAME": "NK SECURITIES RESEARCH PVT. LTD.",
+            "TRANSACTION_TYPE": "S",
+            "QUANTITY": 439593.0,
+            "PRICE": 788.8
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 539679,
+            "scripname": "KAPILRAJ",
+            "CLIENT_NAME": "NEO APEX SHARE BROKING SERVICES LLP",
+            "TRANSACTION_TYPE": "S",
+            "QUANTITY": 418958.0,
+            "PRICE": 3.41
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 538647,
+            "scripname": "PURSHOTTAM",
+            "CLIENT_NAME": "SUCCESS MERCHANTS PRIVATE LIMITED",
+            "TRANSACTION_TYPE": "S",
+            "QUANTITY": 378000.0,
+            "PRICE": 34.5
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 516110,
+            "scripname": "FAMILYCARE",
+            "CLIENT_NAME": "SOWMYA GAUTAM DESHPANDE",
+            "TRANSACTION_TYPE": "S",
+            "QUANTITY": 348641.0,
+            "PRICE": 1.81
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 512169,
+            "scripname": "CAPRICORN",
+            "CLIENT_NAME": "MULTIPLIER SHARE & STOCK ADVISORS PRIVATE LIMITED",
+            "TRANSACTION_TYPE": "P",
+            "QUANTITY": 310000.0,
+            "PRICE": 32.0
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 526935,
+            "scripname": "KALIND",
+            "CLIENT_NAME": "SATANI CHHAGANBHAI RATILALBHAI",
+            "TRANSACTION_TYPE": "P",
+            "QUANTITY": 300000.0,
+            "PRICE": 4.44
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 544468,
+            "scripname": "BDI",
+            "CLIENT_NAME": "ARYAMAN BROKING LIMITED",
+            "TRANSACTION_TYPE": "P",
+            "QUANTITY": 265200.0,
+            "PRICE": 114.36
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 544468,
+            "scripname": "BDI",
+            "CLIENT_NAME": "SANJAY NARENDRA BANSAL",
+            "TRANSACTION_TYPE": "S",
+            "QUANTITY": 258000.0,
+            "PRICE": 114.35
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 543520,
+            "scripname": "GLHRL",
+            "CLIENT_NAME": "DIPEN MUKESHBHAI BAROT",
+            "TRANSACTION_TYPE": "S",
+            "QUANTITY": 250000.0,
+            "PRICE": 14.81
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 512169,
+            "scripname": "CAPRICORN",
+            "CLIENT_NAME": "NANDKISHORE PARTANI",
+            "TRANSACTION_TYPE": "P",
+            "QUANTITY": 250000.0,
+            "PRICE": 32.0
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 512169,
+            "scripname": "CAPRICORN",
+            "CLIENT_NAME": "DINESH PARTHANI (HUF)",
+            "TRANSACTION_TYPE": "P",
+            "QUANTITY": 250000.0,
+            "PRICE": 32.0
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 526935,
+            "scripname": "KALIND",
+            "CLIENT_NAME": "ABHISHEK ASHVINBHAI KAMDAR HUF",
+            "TRANSACTION_TYPE": "P",
+            "QUANTITY": 240000.0,
+            "PRICE": 4.48
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 512093,
+            "scripname": "CRANESSOFT",
+            "CLIENT_NAME": "JAYPEE CAPITAL SERVICE LTD",
+            "TRANSACTION_TYPE": "S",
+            "QUANTITY": 221689.0,
+            "PRICE": 7.08
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 531144,
+            "scripname": "ELFORGE",
+            "CLIENT_NAME": "MAHENDRA GIRDHARILAL WADHWANI",
+            "TRANSACTION_TYPE": "P",
+            "QUANTITY": 212359.0,
+            "PRICE": 23.73
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 543520,
+            "scripname": "GLHRL",
+            "CLIENT_NAME": "ATRICHHAYA FINANCIAL PRIVATE LIMITED",
+            "TRANSACTION_TYPE": "S",
+            "QUANTITY": 211000.0,
+            "PRICE": 14.71
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 539760,
+            "scripname": "RELICAB",
+            "CLIENT_NAME": "ARYAMAN BROKING LIMITED",
+            "TRANSACTION_TYPE": "P",
+            "QUANTITY": 203700.0,
+            "PRICE": 35.0
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 514360,
+            "scripname": "KRRAIL",
+            "CLIENT_NAME": "PRATIK MADHUKAR SHETH",
+            "TRANSACTION_TYPE": "S",
+            "QUANTITY": 200000.0,
+            "PRICE": 19.11
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 514360,
+            "scripname": "KRRAIL",
+            "CLIENT_NAME": "PAYAL CHHABRA",
+            "TRANSACTION_TYPE": "S",
+            "QUANTITY": 200000.0,
+            "PRICE": 19.0
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 540132,
+            "scripname": "SIIL",
+            "CLIENT_NAME": "VIVEK  RAHEJA",
+            "TRANSACTION_TYPE": "S",
+            "QUANTITY": 200000.0,
+            "PRICE": 15.77
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 544768,
+            "scripname": "MANIVENI",
+            "CLIENT_NAME": "LONGTHRIVE CAPITAL VCC - TRENDVIEW CAPITAL FUND",
+            "TRANSACTION_TYPE": "S",
+            "QUANTITY": 176000.0,
+            "PRICE": 26.0
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 544552,
+            "scripname": "RDGAIL",
+            "CLIENT_NAME": "MAYURI SHRIPAL VORA",
+            "TRANSACTION_TYPE": "S",
+            "QUANTITY": 172800.0,
+            "PRICE": 139.38
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 512169,
+            "scripname": "CAPRICORN",
+            "CLIENT_NAME": "GREEN PEAKS ENTERPRISES LLP",
+            "TRANSACTION_TYPE": "S",
+            "QUANTITY": 152000.0,
+            "PRICE": 31.46
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 544506,
+            "scripname": "SHARVAYA",
+            "CLIENT_NAME": "VIJAY JAYANTILAL SANGHAVI",
+            "TRANSACTION_TYPE": "S",
+            "QUANTITY": 125400.0,
+            "PRICE": 140.45
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 544735,
+            "scripname": "NOVUS",
+            "CLIENT_NAME": "DAVINDER SINGH",
+            "TRANSACTION_TYPE": "S",
+            "QUANTITY": 124000.0,
+            "PRICE": 220.18
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 506122,
+            "scripname": "VOLKAI",
+            "CLIENT_NAME": "TATIA FINAANCIAL SERVICES LTD",
+            "TRANSACTION_TYPE": "P",
+            "QUANTITY": 122300.0,
+            "PRICE": 15.5
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 544710,
+            "scripname": "ACCORDTS",
+            "CLIENT_NAME": "SHINE STAR BUILD CAP PVT LTD",
+            "TRANSACTION_TYPE": "S",
+            "QUANTITY": 120000.0,
+            "PRICE": 82.94
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 544552,
+            "scripname": "RDGAIL",
+            "CLIENT_NAME": "PARITOSH RAMNIKLAL SHAH",
+            "TRANSACTION_TYPE": "P",
+            "QUANTITY": 117600.0,
+            "PRICE": 140.0
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 538647,
+            "scripname": "PURSHOTTAM",
+            "CLIENT_NAME": "PRIME CAPITAL MARKET LIMITED",
+            "TRANSACTION_TYPE": "S",
+            "QUANTITY": 117000.0,
+            "PRICE": 34.0
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 539760,
+            "scripname": "RELICAB",
+            "CLIENT_NAME": "SANJAY NARENDRA BANSAL",
+            "TRANSACTION_TYPE": "S",
+            "QUANTITY": 114840.0,
+            "PRICE": 35.0
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 512169,
+            "scripname": "CAPRICORN",
+            "CLIENT_NAME": "GREEN PEAKS ENTERPRISES LLP",
+            "TRANSACTION_TYPE": "P",
+            "QUANTITY": 105000.0,
+            "PRICE": 32.0
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 506122,
+            "scripname": "VOLKAI",
+            "CLIENT_NAME": "KREON FINNANCIAL SERVICES LIMITED",
+            "TRANSACTION_TYPE": "S",
+            "QUANTITY": 101353.0,
+            "PRICE": 16.79
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 544876,
+            "scripname": "ENS",
+            "CLIENT_NAME": "ACME CAPITAL MARKET LIMITED",
+            "TRANSACTION_TYPE": "S",
+            "QUANTITY": 90000.0,
+            "PRICE": 102.36
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 544876,
+            "scripname": "ENS",
+            "CLIENT_NAME": "VIKASA INDIA EIF I FUND - SHARE CLASS N",
+            "TRANSACTION_TYPE": "P",
+            "QUANTITY": 82800.0,
+            "PRICE": 102.42
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 543400,
+            "scripname": "OMNIPOTENT",
+            "CLIENT_NAME": "AMIT JUGRAJ JAIN",
+            "TRANSACTION_TYPE": "P",
+            "QUANTITY": 82000.0,
+            "PRICE": 2.8
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 543400,
+            "scripname": "OMNIPOTENT",
+            "CLIENT_NAME": "GANDHARV  SINGH",
+            "TRANSACTION_TYPE": "S",
+            "QUANTITY": 80000.0,
+            "PRICE": 2.8
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 539190,
+            "scripname": "DFL",
+            "CLIENT_NAME": "VIRENDRA KUMAR GOYAL",
+            "TRANSACTION_TYPE": "S",
+            "QUANTITY": 74500.0,
+            "PRICE": 39.18
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 539190,
+            "scripname": "DFL",
+            "CLIENT_NAME": "ASSATRA CAPITAL VENTURES PRIVATE LIMITED",
+            "TRANSACTION_TYPE": "P",
+            "QUANTITY": 71904.0,
+            "PRICE": 39.18
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 512443,
+            "scripname": "GANONPRO",
+            "CLIENT_NAME": "PRASIDDHI JIJABRAO PATIL",
+            "TRANSACTION_TYPE": "P",
+            "QUANTITY": 70000.0,
+            "PRICE": 7.05
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 512589,
+            "scripname": "SITAENT",
+            "CLIENT_NAME": "SANJU ASHOK TULSYAN",
+            "TRANSACTION_TYPE": "S",
+            "QUANTITY": 63900.0,
+            "PRICE": 115.07
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 540132,
+            "scripname": "SIIL",
+            "CLIENT_NAME": "GREEN PEAKS ENTERPRISES LLP",
+            "TRANSACTION_TYPE": "P",
+            "QUANTITY": 60052.0,
+            "PRICE": 15.32
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 512443,
+            "scripname": "GANONPRO",
+            "CLIENT_NAME": "DHAN CREATORS AND INVESTMENTS",
+            "TRANSACTION_TYPE": "S",
+            "QUANTITY": 50000.0,
+            "PRICE": 7.05
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 544662,
+            "scripname": "SIMANDHAR",
+            "CLIENT_NAME": "HITESH ZAVERCHAND MAKWANA",
+            "TRANSACTION_TYPE": "P",
+            "QUANTITY": 50000.0,
+            "PRICE": 147.99
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 544662,
+            "scripname": "SIMANDHAR",
+            "CLIENT_NAME": "JIGNA NILESH SHETH",
+            "TRANSACTION_TYPE": "S",
+            "QUANTITY": 49638.0,
+            "PRICE": 148.0
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 526494,
+            "scripname": "PROMACT",
+            "CLIENT_NAME": "SHAH DIPAK KANAYALAL",
+            "TRANSACTION_TYPE": "P",
+            "QUANTITY": 48394.0,
+            "PRICE": 16.49
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 544779,
+            "scripname": "UHMVL",
+            "CLIENT_NAME": "KARTHIK  UPPALA",
+            "TRANSACTION_TYPE": "P",
+            "QUANTITY": 45600.0,
+            "PRICE": 35.04
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 531553,
+            "scripname": "DRL",
+            "CLIENT_NAME": "DEEP  AGARWAL",
+            "TRANSACTION_TYPE": "S",
+            "QUANTITY": 40000.0,
+            "PRICE": 35.45
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 526494,
+            "scripname": "PROMACT",
+            "CLIENT_NAME": "JAISON GEORGE",
+            "TRANSACTION_TYPE": "S",
+            "QUANTITY": 34995.0,
+            "PRICE": 17.9
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 539814,
+            "scripname": "LELAVOIR",
+            "CLIENT_NAME": "DEEPAK GUPTA",
+            "TRANSACTION_TYPE": "P",
+            "QUANTITY": 21293.0,
+            "PRICE": 85.64
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 539814,
+            "scripname": "LELAVOIR",
+            "CLIENT_NAME": "DILIP KESHRIMAL SANKLECHA",
+            "TRANSACTION_TYPE": "S",
+            "QUANTITY": 20926.0,
+            "PRICE": 85.4
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 539408,
+            "scripname": "KUBERJI",
+            "CLIENT_NAME": "VAISHALI SOPAN ADHAV",
+            "TRANSACTION_TYPE": "S",
+            "QUANTITY": 17449.0,
+            "PRICE": 54.58
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 544876,
+            "scripname": "ENS",
+            "CLIENT_NAME": "ACME CAPITAL MARKET LIMITED",
+            "TRANSACTION_TYPE": "P",
+            "QUANTITY": 16800.0,
+            "PRICE": 101.3
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 512443,
+            "scripname": "GANONPRO",
+            "CLIENT_NAME": "DHAN CREATORS AND INVESTMENTS",
+            "TRANSACTION_TYPE": "P",
+            "QUANTITY": 11130.0,
+            "PRICE": 7.24
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 543400,
+            "scripname": "OMNIPOTENT",
+            "CLIENT_NAME": "AMIT JUGRAJ JAIN",
+            "TRANSACTION_TYPE": "S",
+            "QUANTITY": 6000.0,
+            "PRICE": 2.6
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 506122,
+            "scripname": "VOLKAI",
+            "CLIENT_NAME": "KREON FINNANCIAL SERVICES LIMITED",
+            "TRANSACTION_TYPE": "P",
+            "QUANTITY": 5700.0,
+            "PRICE": 16.1
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 544468,
+            "scripname": "BDI",
+            "CLIENT_NAME": "ARYAMAN BROKING LIMITED",
+            "TRANSACTION_TYPE": "S",
+            "QUANTITY": 3600.0,
+            "PRICE": 116.67
+          },
+          {
+            "DEAL_DATE": "2026-09-25T00:00:00",
+            "SCRIP_CODE": 506122,
+            "scripname": "VOLKAI",
+            "CLIENT_NAME": "TATIA FINAANCIAL SERVICES LTD",
+            "TRANSACTION_TYPE": "S",
+            "QUANTITY": 18.0,
+            "PRICE": 16.95
+          }
+        ]
+      }
     }
   ]
 }

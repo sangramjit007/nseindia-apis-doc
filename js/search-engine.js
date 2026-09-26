@@ -27,8 +27,8 @@ function scoreApiMatch(api, rawQuery) {
   const compactQuery = compactSearchText(rawQuery);
   const queryTokens = normalizedQuery.split(" ").filter((t) => t.length > 0);
 
-  if (queryTokens.length === 0) return 100;
-
+  const exch = api.exchange || (api.id.startsWith("bse") ? "BSE" : "NSE");
+  const exchNorm = normalizeSearchText(exch);
   const nameNorm = normalizeSearchText(api.name);
   const nameCompact = compactSearchText(api.name);
   const catNorm = normalizeSearchText(api.categoryPath || api.category || "");
@@ -50,7 +50,18 @@ function scoreApiMatch(api, rawQuery) {
     .join(" ");
   const timesNorm = normalizeSearchText(timesText);
 
+  // Index parameters
+  const paramsText = (api.parameters || [])
+    .map((p) => `${p.name} ${p.description || ""}`)
+    .join(" ");
+  const paramsNorm = normalizeSearchText(paramsText);
+
   let score = 0;
+
+  // Exchange query boost (e.g. "bse" or "nse")
+  if (normalizedQuery === exchNorm || queryTokens.includes(exchNorm)) {
+    score += 150;
+  }
 
   // 1. Direct exact or phrase match in Name
   if (nameNorm.includes(normalizedQuery)) {
@@ -80,8 +91,8 @@ function scoreApiMatch(api, rawQuery) {
   }
 
   // 5. Token-level matching across all fields
-  const allFields = `${nameNorm} ${catNorm} ${pathNorm} ${timeNorm} ${descNorm} ${subTabsNorm} ${timesNorm}`;
-  const allCompact = `${nameCompact} ${pathCompact} ${subTabsCompact}`;
+  const allFields = `${exchNorm} ${nameNorm} ${catNorm} ${pathNorm} ${timeNorm} ${descNorm} ${subTabsNorm} ${timesNorm} ${paramsNorm}`;
+  const allCompact = `${exchNorm} ${nameCompact} ${pathCompact} ${subTabsCompact}`;
 
   const allTokensMatch = queryTokens.every((token) => {
     const compactTok = compactSearchText(token);
@@ -90,7 +101,7 @@ function scoreApiMatch(api, rawQuery) {
 
   if (allTokensMatch) {
     score += 50;
-    const tokensInName = queryTokens.filter((t) => nameNorm.includes(t) || subTabsNorm.includes(t)).length;
+    const tokensInName = queryTokens.filter((t) => nameNorm.includes(t) || subTabsNorm.includes(t) || exchNorm.includes(t)).length;
     score += tokensInName * 25;
   }
 
